@@ -2,6 +2,8 @@ import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
 import ButtonStart from "../Buttons/Button";
 import { Difficulties } from "../../types/difficulties";
 import { useEffect, useState } from "react";
+import Timer from "./Timer";
+import Placeholder from "./Placeholder";
 
 interface IProps {
   id: string;
@@ -9,58 +11,6 @@ interface IProps {
   goalTitle: string;
   timeSpent: string;
   difficulty: Difficulties;
-}
-
-interface ITimerProps {
-  time?: number;
-  gems?: number;
-}
-
-function addZeroBefore(n: number) {
-  return (n < 10 ? '0' : '') + n;
-}
-
-function secondsToHms(d: number) {
-  d = Number(d);
-  let h = Math.floor(d / 3600);
-  let m = Math.floor((d % 3600) / 60);
-  let s = Math.floor((d % 3600) % 60);
-
-  let hDisplay = h > 0 ? addZeroBefore(h) + ":" : "";
-  let mDisplay = m > 0 ? addZeroBefore(m) + ":" : "00:";
-  let sDisplay = s > 0 ? addZeroBefore(s) : "00";
-
-  return hDisplay + mDisplay + sDisplay;
-}
-
-function Timer({ time = 0, gems = 0 }: ITimerProps) {
-  const timerString = secondsToHms(time);
-
-  return (
-    <div>
-      <div className="grid place-items-center text-4xl">
-        <span>{timerString}</span>
-      </div>
-      <div className="flex items-center justify-center text-sm gap-0">
-        <span className="mr-1">+ {gems}</span>
-        <span>
-          <img className="object-scale-down w-3" src="/images/gem.png"></img>
-        </span>
-      </div>
-    </div>
-  );
-}
-
-function Placeholder() {
-  return (
-    <div className="grid place-items-center -mt-1">
-      <img
-        className="object-scale-down w-16"
-        src="/images/chronometer.png"
-        alt="stopwatch"
-      />
-    </div>
-  );
 }
 
 export default function ActivityGoing({
@@ -90,7 +40,7 @@ export default function ActivityGoing({
   };
 
   return (
-    <div className="container rounded-lg max-w-sm bg-white pt-1">
+    <div className="container rounded-lg max-w-sm bg-white pt-1 select-none">
       <div className="px-2 pb-1">
         <div className="flex flex-col">
           <span className="text-grey-darker font-medium text-sm">
