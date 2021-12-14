@@ -36,7 +36,9 @@ function App() {
       {/*<Goal id='123' title="Learn Javascript" percent={50} gems={3000} goalGems={6000}/>*/}
       {/*<Activity id='123' title='Do the project' goalTitle="Learn Javascript" timeSpent="1h 21min" difficulty="easy"/>*/}
       {/*<TaskFinished id='123' gems={2} title='Watch the video' goalTitle='Learn Javascript' isMore={true} deadline='10/11/2021' difficulty='easy'/>*/}
-      {taskModal.show && <TaskFull closeModal={closeModal} taskId={taskModal.taskId}/>}
+      {taskModal.show && (
+        <TaskFull closeModal={closeModal} taskId={taskModal.taskId} />
+      )}
     </div>
   );
 }

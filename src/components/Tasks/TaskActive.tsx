@@ -21,8 +21,14 @@ export default function TaskActive({
   difficulty,
   openModal
 }: IProps) {
+
+  const handleClick = () => {
+    if (!isMore) return
+
+    openModal(id)
+  }
   return (
-    <div className="container rounded-lg max-w-sm bg-white pt-1" onClick={openModal}>
+    <div className="container rounded-lg max-w-sm bg-white pt-1" onClick={handleClick}>
       <div className="px-2 pb-1">
         <div className="flex flex-col mb-3">
           <span className="text-grey-darker font-medium text-sm">
