@@ -13,7 +13,7 @@ interface IProps {
   difficulty: Difficulties;
 }
 
-export default function ActivityGoing({
+export default function Activity({
   id,
   title,
   goalTitle,

@@ -17,6 +17,10 @@ const badgeOptions = {
     icon: "wind",
     text: "Easy",
   },
+  picker: {
+    icon: "weight",
+    text: "Difficulty",
+  },
 };
 
 export default function DifficultyBadge({ difficulty }: IProps) {

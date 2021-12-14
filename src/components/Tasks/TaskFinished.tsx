@@ -1,11 +1,30 @@
 import Deadline from "../Deadline/Deadline";
 import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
+import { Difficulties } from "../../types/difficulties";
 
-export default function TaskFinished() {
+interface IProps {
+  id: string;
+  title: string;
+  goalTitle: string;
+  isMore: boolean;
+  deadline: string;
+  difficulty: Difficulties;
+  gems: number
+}
+
+export default function TaskFinished({
+  id,
+  title,
+  goalTitle,
+  isMore,
+  deadline,
+  difficulty,
+  gems
+}: IProps) {
   return (
     <div className="container relative rounded-lg max-w-sm bg-white pt-1">
       <div className="absolute flex justify-center gap-1 items-center w-full h-full top-0 left-0 rounded-lg z-50">
-        <span className="text-white font-semibold text-4xl">+ 2</span>
+        <span className="text-white font-semibold text-4xl">+ {gems}</span>
         <span>
           <img className="object-scale-down w-7" src="/images/gem.png"></img>
         </span>
@@ -14,16 +33,16 @@ export default function TaskFinished() {
       <div className="px-2 pb-1">
         <div className="flex flex-col mb-3">
           <span className="text-grey-darker font-medium text-sm">
-            Learn Javascript
+            {goalTitle}
           </span>
           <span className="font-medium text-black text-xl">
-            Watch youtube video
+            {title}
           </span>
-          <span className="font-medium text-grey-darker text-lg">...</span>
+          {isMore && <span className="font-medium text-grey-darker text-lg">...</span>}
         </div>
         <div className="flex row gap-3 justify-end">
-          <Deadline />
-          <DifficultyBadge />
+          <Deadline time={deadline}/>
+          <DifficultyBadge difficulty={difficulty} />
         </div>
       </div>
     </div>
