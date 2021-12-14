@@ -9,6 +9,7 @@ interface IProps {
   isMore: boolean;
   deadline: string;
   difficulty: Difficulties;
+  openModal: any
 }
 
 export default function TaskActive({
@@ -18,9 +19,10 @@ export default function TaskActive({
   isMore,
   deadline,
   difficulty,
+  openModal
 }: IProps) {
   return (
-    <div className="container rounded-lg max-w-sm bg-white pt-1">
+    <div className="container rounded-lg max-w-sm bg-white pt-1" onClick={openModal}>
       <div className="px-2 pb-1">
         <div className="flex flex-col mb-3">
           <span className="text-grey-darker font-medium text-sm">
