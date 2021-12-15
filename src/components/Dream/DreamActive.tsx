@@ -1,9 +1,51 @@
-import React from 'react'
+import { numberWithSpaces } from "../../helpers/numbers";
 
-export default function DreamActive() {
+interface IProps {
+  title: string;
+  gems: number;
+  gemsGoal: number;
+  goalsNumber: number;
+  daysNumber: number;
+  tasksNumber: number;
+  isActive?: boolean;
+}
+
+export default function DreamActive({
+  title,
+  gems,
+  gemsGoal,
+  goalsNumber,
+  daysNumber,
+  tasksNumber,
+  isActive = true,
+}: IProps) {
+  const gemsString = numberWithSpaces(gems);
+  const gemsGoalString = numberWithSpaces(gemsGoal);
+
   return (
-    <div>
-      
+    <div className="container rounded-lg max-w-2xl bg-white pt-1">
+      <div className="px-2 pb-1 flex flex-col items-center gap-2">
+        <div>
+          <span className="text-xl font-medium">{title}</span>
+        </div>
+        <div className="text-xl flex items-center gap-1">
+          {isActive ? <span>{gemsString} / {gemsGoalString}</span> : <span>{gemsGoalString}</span>}
+          <span className="inline-block">
+            <img className="object-scale-down w-4" src="/images/gem.png"></img>
+          </span>
+        </div>
+        <div className="w-24">
+          <img
+            className={isActive ? "grayscale" : ""}
+            src="/images/goblet.png"
+          />
+        </div>
+        <div className="flex gap-10">
+          <span>{goalsNumber} goals</span>
+          <span>{daysNumber} days</span>
+          <span>{tasksNumber} tasks</span>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
