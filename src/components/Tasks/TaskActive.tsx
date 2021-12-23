@@ -1,6 +1,11 @@
 import Deadline from "../Deadline/Deadline";
 import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
 import { Difficulties } from "../../types/difficulties";
+import NiceModal from '@ebay/nice-modal-react';
+
+import TaskFullModal from '../Modals/ModalTaskFull'
+
+NiceModal.register('TaskFullModal', TaskFullModal);
 
 interface IProps {
   id: string;
@@ -9,7 +14,6 @@ interface IProps {
   isMore: boolean;
   deadline: string;
   difficulty: Difficulties;
-  openModal: any
 }
 
 export default function TaskActive({
@@ -18,17 +22,14 @@ export default function TaskActive({
   goalTitle,
   isMore,
   deadline,
-  difficulty,
-  openModal
+  difficulty
 }: IProps) {
+  const showModal = () => {
+    NiceModal.show('TaskFullModal', { taskId: '123' })
+  };
 
-  const handleClick = () => {
-    if (!isMore) return
-
-    openModal(id)
-  }
   return (
-    <div className="container rounded-lg max-w-sm bg-white pt-1" onClick={handleClick}>
+    <div className="container rounded-lg max-w-sm bg-white pt-1" onClick={showModal}>
       <div className="px-2 pb-1">
         <div className="flex flex-col mb-3">
           <span className="text-grey-darker font-medium text-sm">
