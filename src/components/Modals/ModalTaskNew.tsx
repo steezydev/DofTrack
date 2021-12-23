@@ -1,8 +1,5 @@
 import NiceModal, { useModal } from "@ebay/nice-modal-react";
 
-import Deadline from "../Deadline/Deadline";
-import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
-import { Difficulties } from "../../types/difficulties";
 import ButtonSave from "../Buttons/ButtonSave";
 
 import DifficultyBadgePicker from "../DifficultyBadge/DifficultyBadgePicker"
