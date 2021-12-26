@@ -1,8 +1,7 @@
 import Deadline from "../Deadline/Deadline";
 import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
-import { Difficulties } from "../../types/difficulties";
+import { Difficulties } from "../../types/TypesDifficulties";
 import NiceModal from '@ebay/nice-modal-react';
-
 
 interface IProps {
   id: string;

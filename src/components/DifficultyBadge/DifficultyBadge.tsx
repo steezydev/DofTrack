@@ -1,4 +1,4 @@
-import { Difficulties } from "../../types/difficulties";
+import { Difficulties } from "../../types/TypesDifficulties";
 
 interface IProps {
   difficulty: Difficulties;

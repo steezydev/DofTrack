@@ -1,6 +1,6 @@
 import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
 import ButtonStart from "../Buttons/Button";
-import { Difficulties } from "../../types/difficulties";
+import { Difficulties } from "../../types/TypesDifficulties";
 import { useEffect, useState } from "react";
 import Timer from "./Timer";
 import Placeholder from "./Placeholder";

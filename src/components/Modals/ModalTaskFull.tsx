@@ -2,15 +2,10 @@ import NiceModal, { useModal } from "@ebay/nice-modal-react";
 
 import Deadline from "../Deadline/Deadline";
 import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
-import { Difficulties } from "../../types/difficulties";
+import { Difficulties } from "../../types/TypesDifficulties";
 import ButtonComplete from "../Buttons/ButtonComplete";
 
-interface IProps {
-  taskId: string;
-  closeModal: any;
-}
-
-interface IData {
+interface TaskData {
   title: string;
   goalTitle: string;
   text: string;
@@ -19,7 +14,7 @@ interface IData {
   isActive: boolean;
 }
 
-const data: IData = {
+const data: TaskData = {
   title: "Watch a youtube video",
   goalTitle: "Learn Javascript",
   text: "Watch video",
