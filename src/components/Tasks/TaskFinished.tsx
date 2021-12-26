@@ -40,7 +40,7 @@ export default function TaskFinished({
           </span>
           {isMore && <span className="font-medium text-grey-darker text-lg">...</span>}
         </div>
-        <div className="flex row gap-3 justify-end">
+        <div className="flex row gap-3 justify-end flex-wrap">
           <Deadline time={deadline}/>
           <DifficultyBadge difficulty={difficulty} />
         </div>

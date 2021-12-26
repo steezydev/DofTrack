@@ -31,7 +31,7 @@ export default NiceModal.create((goadId) => {
           <DifficultyBadgePicker />
         </div>
         <div className="text-lg p-1 mt-5 text-black">
-          <div contentEditable="true" className="mb-3 w-full p-1 outline-2 outline-dashed outline-grey-darker rounded-lg min-h-[200px] max-h-[400px] overflow-y-scroll"></div>
+          <div contentEditable="true" className="customScroll mb-3 w-full p-1 outline-2 outline-dashed outline-grey-darker rounded-lg min-h-[200px] max-h-[400px] overflow-y-scroll"></div>
         </div>
         <div className="mt-2 mb-1 grid place-items-end">
           <ButtonSave />

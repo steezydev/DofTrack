@@ -3,9 +3,6 @@ import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
 import { Difficulties } from "../../types/difficulties";
 import NiceModal from '@ebay/nice-modal-react';
 
-import TaskFullModal from '../Modals/ModalTaskFull'
-
-NiceModal.register('TaskFullModal', TaskFullModal);
 
 interface IProps {
   id: string;
@@ -40,7 +37,7 @@ export default function TaskActive({
           </span>
           {isMore && <span className="font-medium text-grey-darker text-lg">...</span>}
         </div>
-        <div className="flex row gap-3 justify-end">
+        <div className="flex row gap-3 justify-end flex-wrap">
           <Deadline time={deadline}/>
           <DifficultyBadge difficulty={difficulty} />
         </div>
