@@ -45,6 +45,27 @@ body {
   background-color: #EEEEEE
 }
 
+.customScroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.customScroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.customScroll::-webkit-scrollbar-thumb {
+  background: rgb(143, 143, 143);
+  border-radius: 20px;
+}
+
+.gridwrapp {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+
+.animation-grow { transition: all .2s ease-in-out; }
+.animation-grow:hover { transform: scale(1.1); }
 
 @tailwind base;
 @tailwind components;
