@@ -25,6 +25,7 @@ const badgeOptions = {
 
 export default function DifficultyBadge({ difficulty }: IProps) {
   const badge = badgeOptions[difficulty]
+  
 
   return (
     <div className="container flex row gap-1 w-fit select-none">
