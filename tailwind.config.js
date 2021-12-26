@@ -10,7 +10,9 @@ module.exports = {
       'grey-darker': '#6B6B6B',
       'grey-dark': '#414141',
       'green': '#5EDB79',
+      'green-hover': '#79dc8f',
       'red': '#DB5E5E',
+      'red-hover': '#dc7676',
       'blue': '#5EA6DB',
     },
     fontFamily: {

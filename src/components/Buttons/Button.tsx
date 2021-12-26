@@ -8,10 +8,12 @@ interface IProps {
 const buttonOptions = {
   start: {
     color: "bg-green",
+    hover: "hover:bg-green-hover",
     text: "Start",
   },
   stop: {
     color: "bg-red",
+    hover: "hover:bg-red-hover",
     text: "Stop",
   },
 };
@@ -21,7 +23,7 @@ export default function ButtonStart({ type, action }: IProps) {
 
   return (
     <div
-      className={`container cursor-pointer rounded-xl grid place-items-center max-w-[9rem] ${button.color}`}
+      className={`container cursor-pointer rounded-xl grid place-items-center max-w-[9rem] ${button.color} ${button.hover}`}
       onClick={action}
     >
       <div className="p-2">
