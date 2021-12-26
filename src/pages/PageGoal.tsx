@@ -1,22 +1,45 @@
-import React from "react";
+import NiceModal from "@ebay/nice-modal-react";
 import { useParams } from "react-router-dom";
 
+//Components
 import Activity from "../components/Activity/Activity";
 import TaskActive from "../components/Tasks/TaskActive";
 import TaskFinished from "../components/Tasks/TaskFinished";
 import ButtonAdd from "../components/Buttons/ButtonAdd";
+import NavBar from "../components/Nav/NavBar";
 
-import NiceModal from "@ebay/nice-modal-react";
+//Types
+import { GoalData } from "../types/TypesGoal";
+import { Link } from "../types/TypesLinks";
 
 const goalData = {
   title: "Learn Javascript",
 };
 
+const links: Link[] = [
+  {
+    title: "All",
+    isActive: true,
+    path: "/",
+  },
+  {
+    title: "Tasks",
+    path: "/",
+  },
+  {
+    title: "Activities",
+    path: "/",
+  },
+  {
+    title: "Finished",
+    path: "/",
+  },
+];
+
 export default function PageGoal() {
   const { id } = useParams();
 
   const showNewModal = (goalId: string) => {
-    // Show a modal with arguments passed to the component as props
     NiceModal.show("TaskNewModal", { goalId });
   };
 
@@ -29,12 +52,7 @@ export default function PageGoal() {
           <img className="object-scale-down w-6" src="/images/gem.png"></img>
         </div>
       </header>
-      <nav className="flex justify-center gap-5 text-xl font-medium text-grey-darker">
-        <span className="border-b-2">All</span>
-        <span>Tasks</span>
-        <span>Activities</span>
-        <span>Finished</span>
-      </nav>
+      <NavBar links={links} />
       <div className="p-10">
         <div className="mb-10">
           <h1 className="text-2xl font-medium">Active</h1>
