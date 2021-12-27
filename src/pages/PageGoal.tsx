@@ -39,8 +39,12 @@ const links: Link[] = [
 export default function PageGoal() {
   const { id } = useParams();
 
-  const showNewModal = (goalId: string) => {
+  const showNewTaskModal = (goalId: string) => {
     NiceModal.show("TaskNewModal", { goalId });
+  };
+
+  const showNewActivityModal = (goalId: string) => {
+    NiceModal.show("ActivityNewModal", { goalId });
   };
 
   return (
@@ -72,7 +76,7 @@ export default function PageGoal() {
                 timeSpent="1hr 30min"
                 difficulty="EASY"
               />
-              <ButtonAdd action={() => showNewModal("123")} />
+              <ButtonAdd action={() => showNewActivityModal("123")} />
             </div>
             <div className="p-2 flex flex-row justify-start content-start gap-5 items-start w-full flex-wrap ">
               {[...Array(4)].map((x, i) => (
@@ -86,7 +90,7 @@ export default function PageGoal() {
                   difficulty="MEDIUM"
                 />
               ))}
-              <ButtonAdd action={() => showNewModal("123")} />
+              <ButtonAdd action={() => showNewTaskModal("123")} />
             </div>
           </div>
         </div>
