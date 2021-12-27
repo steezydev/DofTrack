@@ -7,7 +7,7 @@ interface IProps {
 export default function DifficultyBadgePickerItem({ title, img, action }: IProps) {
   return (
     <div
-      className="container flex row gap-2 w-full pr-7 hover:bg-grey-lighter rounded-md p-1"
+      className="container flex row gap-2 w-full pr-7 hover:bg-grey-lighter rounded-md p-1 cursor-pointer"
       onClick={action}
     >
       <img

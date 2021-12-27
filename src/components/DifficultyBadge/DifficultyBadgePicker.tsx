@@ -46,7 +46,7 @@ export default function DifficultyBadgePicker({setDifficulty}: IProps) {
   return (
     <div ref={ref}>
       <div
-        className="container flex row gap-1 w-fit select-none"
+        className="container flex row gap-1 w-fit select-none cursor-pointer"
         onClick={handleClick}
       >
         <img
