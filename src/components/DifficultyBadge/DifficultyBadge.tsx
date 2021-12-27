@@ -1,27 +1,13 @@
+//Types
 import { Difficulties } from "../../types/TypesDifficulties";
+
+//Constants
+import { badgeOptions } from "../../constants/ConstantsDifficulties";
 
 interface IProps {
   difficulty: Difficulties;
 }
 
-const badgeOptions = {
-  hard: {
-    icon: "fire",
-    text: "Hard",
-  },
-  medium: {
-    icon: "sweat",
-    text: "Medium",
-  },
-  easy: {
-    icon: "wind",
-    text: "Easy",
-  },
-  picker: {
-    icon: "weight",
-    text: "Difficulty",
-  },
-};
 
 export default function DifficultyBadge({ difficulty }: IProps) {
   const badge = badgeOptions[difficulty]

@@ -1,18 +1,15 @@
 import React from "react";
+import NiceModal from "@ebay/nice-modal-react";
+
+//Components
 import Goal from "../components/Goals/Goal";
 import Activity from "../components/Activity/Activity";
 import TaskActive from "../components/Tasks/TaskActive";
 import ButtonAdd from "../components/Buttons/ButtonAdd";
 import ButtonMore from "../components/Buttons/ButtonMore";
 
-import NiceModal from "@ebay/nice-modal-react";
-
-import ModalTaskNew from "../components/Modals/ModalTaskNew";
-
-
 export default function PageMainGoals() {
   const showNewModal = (goalId: string) => {
-    // Show a modal with arguments passed to the component as props
     NiceModal.show("TaskNewModal", { goalId });
   };
 
@@ -29,7 +26,7 @@ export default function PageMainGoals() {
             title="Do the project"
             goalTitle="Learn Javascript"
             timeSpent="1hr 30min"
-            difficulty="easy"
+            difficulty="EASY"
           />
           <TaskActive
             id="123"
@@ -37,7 +34,7 @@ export default function PageMainGoals() {
             goalTitle="Learn Javascript"
             isMore={true}
             deadline="12/12/2021"
-            difficulty="medium"
+            difficulty="MEDIUM"
           />
           <TaskActive
             id="123"
@@ -45,7 +42,7 @@ export default function PageMainGoals() {
             goalTitle="Learn Javascript"
             isMore={true}
             deadline="12/12/2021"
-            difficulty="medium"
+            difficulty="MEDIUM"
           />
           <TaskActive
             id="123"
@@ -53,7 +50,7 @@ export default function PageMainGoals() {
             goalTitle="Learn Javascript"
             isMore={true}
             deadline="12/12/2021"
-            difficulty="medium"
+            difficulty="MEDIUM"
           />
           <TaskActive
             id="123"
@@ -61,7 +58,7 @@ export default function PageMainGoals() {
             goalTitle="Learn Javascript"
             isMore={true}
             deadline="12/12/2021"
-            difficulty="medium"
+            difficulty="MEDIUM"
           />
           <ButtonMore goalId='123'/>
         </div>
@@ -72,7 +69,7 @@ export default function PageMainGoals() {
             title="Do the project"
             goalTitle="Learn Javascript"
             timeSpent="1hr 30min"
-            difficulty="easy"
+            difficulty="EASY"
           />
           <TaskActive
             id="123"
@@ -80,7 +77,7 @@ export default function PageMainGoals() {
             goalTitle="Learn Javascript"
             isMore={true}
             deadline="12/12/2021"
-            difficulty="medium"
+            difficulty="MEDIUM"
           />
           <ButtonAdd action={() => showNewModal('123')}/>
         </div>
@@ -91,7 +88,7 @@ export default function PageMainGoals() {
             title="Do the project"
             goalTitle="Learn Javascript"
             timeSpent="1hr 30min"
-            difficulty="easy"
+            difficulty="EASY"
           />
           <TaskActive
             id="123"
@@ -99,7 +96,7 @@ export default function PageMainGoals() {
             goalTitle="Learn Javascript"
             isMore={true}
             deadline="12/12/2021"
-            difficulty="medium"
+            difficulty="MEDIUM"
           />
           <ButtonAdd action={() => showNewModal('123')}/>
         </div>

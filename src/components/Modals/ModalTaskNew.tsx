@@ -9,6 +9,7 @@ import DeadlinePicker from "../Deadline/DeadlinePicker";
 //Types
 import { GoalData } from "../../types/TypesGoal";
 import { TaskData } from "../../types/TypesTask";
+import { Difficulties } from "../../types/TypesDifficulties";
 
 const goalDataMock = {
   title: "Learn Javascript!!",
@@ -26,6 +27,10 @@ export default NiceModal.create((goadId) => {
     //!Mock data
     setGoalData(goalDataMock);
   }, []);
+
+  const setDifficulty = (value: Difficulties) => {
+    setNewTaskData((prevState) => ({...prevState, difficulty: value}));
+  }
 
   const handleChangeTitle = (e: any) => {
     setNewTaskData((prevState) => ({...prevState, title: e.target.value}));
@@ -67,7 +72,7 @@ export default NiceModal.create((goadId) => {
         </div>
         <div className="flex row gap-2">
           <DeadlinePicker />
-          <DifficultyBadgePicker />
+          <DifficultyBadgePicker setDifficulty={setDifficulty}/>
         </div>
         <div className="text-lg p-1 mt-5 text-black">
           <div

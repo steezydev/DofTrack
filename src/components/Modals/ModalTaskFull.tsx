@@ -1,6 +1,9 @@
 import NiceModal, { useModal } from "@ebay/nice-modal-react";
 import { useEffect, useState } from "react";
 
+//Constants
+import {DIFF_EASY, DIFF_HARD, DIFF_MEDIUM, DIFF_PICKER} from '../../constants/ConstantsDifficulties'
+
 //Components
 import Deadline from "../Deadline/Deadline";
 import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
@@ -15,7 +18,7 @@ const data: TaskData = {
   goalTitle: "Learn Javascript",
   text: "Watch video",
   deadline: "10/11/2021",
-  difficulty: "hard",
+  difficulty: "HARD",
   isActive: true,
 };
 

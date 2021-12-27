@@ -63,14 +63,14 @@ export default function PageGoal() {
                 title="Do the project"
                 goalTitle="Learn Javascript"
                 timeSpent="1hr 30min"
-                difficulty="easy"
+                difficulty="EASY"
               />
               <Activity
                 id="123"
                 title="Do the project"
                 goalTitle="Learn Javascript"
                 timeSpent="1hr 30min"
-                difficulty="easy"
+                difficulty="EASY"
               />
               <ButtonAdd action={() => showNewModal("123")} />
             </div>
@@ -83,7 +83,7 @@ export default function PageGoal() {
                   goalTitle="Learn Javascript"
                   isMore={true}
                   deadline="12/12/2021"
-                  difficulty="medium"
+                  difficulty="MEDIUM"
                 />
               ))}
               <ButtonAdd action={() => showNewModal("123")} />
@@ -102,7 +102,7 @@ export default function PageGoal() {
                 goalTitle="Learn Javascript"
                 isMore={true}
                 deadline="12/12/2021"
-                difficulty="medium"
+                difficulty="MEDIUM"
                 gems={2}
               />
             ))}
