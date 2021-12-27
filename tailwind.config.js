@@ -6,6 +6,7 @@ module.exports = {
       'white': '#FFFFFF',
       'back': '#EEEEEE',
       'black': '#1E1E1E',
+      'grey-lighter': '#ebebeb',
       'grey-light': '#898989',
       'grey-darker': '#6B6B6B',
       'grey-dark': '#414141',
@@ -14,6 +15,7 @@ module.exports = {
       'red': '#DB5E5E',
       'red-hover': '#dc7676',
       'blue': '#5EA6DB',
+      'blue-hover': '#73aed9',
     },
     fontFamily: {
       sans: ['Pally-Variable', 'sans-serif'],
