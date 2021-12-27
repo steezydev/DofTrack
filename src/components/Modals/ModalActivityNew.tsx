@@ -1,15 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import NiceModal, { useModal } from "@ebay/nice-modal-react";
 
 //Components
 import ButtonSave from "../Buttons/ButtonSave";
 import DifficultyBadgePicker from "../DifficultyBadge/DifficultyBadgePicker";
-import DeadlinePicker from "../Deadline/DeadlinePicker";
+import TimerActivity from "../Timer/TimerActivity";
 
 //Types
 import { GoalData } from "../../types/TypesGoal";
 import { ActivityData } from "../../types/TypesActivity";
 import { Difficulties } from "../../types/TypesDifficulties";
+import { Timer } from "../../types/TypesTimer";
 
 const goalDataMock = {
   title: "Learn Javascript",
@@ -19,7 +20,9 @@ export default NiceModal.create((goadId) => {
   const modal = useModal();
 
   const [goalData, setGoalData] = useState<GoalData>({} as GoalData);
-  const [newActivityData, setNewActivityData] = useState<ActivityData>({} as ActivityData);
+  const [newActivityData, setNewActivityData] = useState<ActivityData>(
+    {} as ActivityData
+  );
 
   useEffect(() => {
     //TODO: Call an API
@@ -29,11 +32,21 @@ export default NiceModal.create((goadId) => {
   }, []);
 
   const setDifficulty = (value: Difficulties) => {
-    setNewActivityData((prevState) => ({...prevState, difficulty: value}));
-  }
+    setNewActivityData((prevState) => ({ ...prevState, difficulty: value }));
+  };
 
   const handleChangeTitle = (e: any) => {
-    setNewActivityData((prevState) => ({...prevState, title: e.target.value}));
+    setNewActivityData((prevState) => ({
+      ...prevState,
+      title: e.target.value,
+    }));
+  };
+
+  const setTimer = (value: Timer) => {
+    setNewActivityData((prevState) => ({
+      ...prevState,
+      goalTime: value,
+    }));
   };
 
   const handleSave = () => {
@@ -67,8 +80,9 @@ export default NiceModal.create((goadId) => {
           ></input>
         </div>
         <div className="flex row gap-2">
-          <DifficultyBadgePicker setDifficulty={setDifficulty}/>
+          <DifficultyBadgePicker setDifficulty={setDifficulty} />
         </div>
+        <TimerActivity setTimer={setTimer}/>
         <div className="mt-2 mb-1 grid place-items-end">
           <ButtonSave action={handleSave} />
         </div>
