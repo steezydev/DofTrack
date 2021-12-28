@@ -20,7 +20,7 @@ export default function PageMainGoals() {
       </header>
       <div className="p-5 flex flex-row justify-center gap-10">
         <div className="flex flex-col gap-5 w-max grow items-center">
-          <Goal id="123" title="Learn Javascript" percent={60} gems={10000} />
+          <Goal id="123" title="Learn Javascript" percent={60} gems={10000} stats={{tasks: 12, activities: 2}}/>
           <Activity
             id="123"
             title="Do the project"
@@ -63,7 +63,7 @@ export default function PageMainGoals() {
           <ButtonMore goalId='123'/>
         </div>
         <div className="flex flex-col gap-5 w-max grow items-center">
-          <Goal id="123" title="Learn Javascript" percent={60} gems={10000} />
+          <Goal id="123" title="Learn Javascript" percent={60} gems={10000} stats={{tasks: 12, activities: 2}}/>
           <Activity
             id="123"
             title="Do the project"
@@ -82,7 +82,7 @@ export default function PageMainGoals() {
           <ButtonAdd action={() => showNewModal('123')}/>
         </div>
         <div className="flex flex-col gap-5 w-max grow items-center">
-          <Goal id="123" title="Learn Javascript" percent={60} gems={10000} />
+          <Goal id="123" title="Learn Javascript" percent={60} gems={10000} stats={{tasks: 12, activities: 2}}/>
           <Activity
             id="123"
             title="Do the project"

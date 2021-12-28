@@ -1,13 +1,16 @@
 import React from "react";
 import GoalChart from "../Chart/GoalChart";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   id: string;
   title: string;
   percent: number;
   gems: number;
+  stats: {
+    tasks: number;
+    activities: number;
+  };
   goalGems?: number;
 }
 
@@ -16,6 +19,7 @@ export default function Goal({
   title,
   percent,
   gems,
+  stats,
   goalGems = 0,
 }: IProps) {
   const navigate = useNavigate();
@@ -35,8 +39,8 @@ export default function Goal({
           <GoalChart percent={percent} gems={gems} goalGems={goalGems} />
         </div>
         <div className="flex justify-center w-full gap-10 text-grey-darker">
-          <span>tasks</span>
-          <span>stats</span>
+          <span>{stats.tasks} tasks</span>
+          <span>{stats.activities} activities</span>
         </div>
       </div>
     </div>
