@@ -1,8 +1,8 @@
-export function addZeroBefore(n: number) {
+export function addZeroBefore(n: number): string {
   return (n < 10 ? "0" : "") + n;
 }
 
-export function secondsToHms(d: number) {
+export function secondsToHms(d: number): string {
   d = Number(d);
   let h = Math.floor(d / 3600);
   let m = Math.floor((d % 3600) / 60);
@@ -13,4 +13,12 @@ export function secondsToHms(d: number) {
   let sDisplay = s > 0 ? addZeroBefore(s) : "00";
 
   return hDisplay + mDisplay + sDisplay;
+}
+
+export function dateToString(date: Date): string {
+  const year = date.getFullYear();
+  const month = addZeroBefore(date.getMonth() + 1);
+  const day = addZeroBefore(date.getDate());
+
+  return day + "/" + month + "/" + year;
 }

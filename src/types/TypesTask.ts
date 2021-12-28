@@ -4,7 +4,7 @@ export interface TaskData {
   title: string;
   goalTitle: string;
   text: string;
-  deadline: string;
+  deadline: Date;
   difficulty: Difficulties;
   isActive?: boolean;
 }

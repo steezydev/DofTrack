@@ -32,6 +32,10 @@ export default NiceModal.create((goadId) => {
     setNewTaskData((prevState) => ({...prevState, difficulty: value}));
   }
 
+  const setDeadlineValue = (date: Date) => {
+    setNewTaskData((prevState) => ({...prevState, deadline: date}));
+  }
+
   const handleChangeTitle = (e: any) => {
     setNewTaskData((prevState) => ({...prevState, title: e.target.value}));
   };
@@ -71,7 +75,7 @@ export default NiceModal.create((goadId) => {
           ></input>
         </div>
         <div className="flex row gap-2">
-          <DeadlinePicker />
+          <DeadlinePicker setDeadlineValue={setDeadlineValue}/>
           <DifficultyBadgePicker setDifficulty={setDifficulty}/>
         </div>
         <div className="text-lg p-1 mt-5 text-black">
