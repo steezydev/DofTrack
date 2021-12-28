@@ -37,6 +37,27 @@ export default NiceModal.create(({ taskId }) => {
   const [isBusy, setIsBusy] = useState(true);
   const [taskData, setTaskData] = useState<TaskData>({} as TaskData);
 
+  const handleComplete = () => {
+    //TODO: Save to the database
+
+    console.log(taskId);
+  };
+
+  const handleEdit = () => {};
+
+  const handleDelete = () => {};
+
+  const actionItems = [
+    {
+      title: "Edit",
+      action: handleEdit,
+    },
+    {
+      title: "Archive",
+      action: handleDelete,
+    },
+  ];
+
   useEffect(() => {
     //TODO: Call an API
 
@@ -44,12 +65,6 @@ export default NiceModal.create(({ taskId }) => {
     setTaskData(data);
     setIsBusy(false);
   }, []);
-
-  const handleComplete = () => {
-    //TODO: Save to the database
-
-    console.log(taskId);
-  };
 
   return (
     <div
@@ -61,7 +76,7 @@ export default NiceModal.create(({ taskId }) => {
       ></div>
       {!isBusy && (
         <div className="w-full max-w-lg p-1 px-2 relative mx-auto my-auto rounded-lg shadow-lg bg-white animate-fade-in-up">
-          <ActionMenu/>
+          <ActionMenu actionItems={actionItems} />
           <div className="flex flex-col mb-1">
             <span className="text-grey-darker font-medium text-sm">
               {taskData.goalTitle}

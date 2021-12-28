@@ -44,9 +44,24 @@ export default function Activity({
     setActive((prevState) => !prevState);
   };
 
+  const handleEdit = () => {};
+
+  const handleDelete = () => {};
+
+  const actionItems = [
+    {
+      title: "Edit",
+      action: handleEdit,
+    },
+    {
+      title: "Archive",
+      action: handleDelete,
+    },
+  ];
+
   return (
     <div className="container rounded-lg max-w-sm bg-white pt-1 select-none relative">
-      <ActionMenu />
+      <ActionMenu actionItems={actionItems}/>
       <div className="px-2 pb-1">
         <div className="flex flex-col">
           <span className="text-grey-darker font-medium text-sm">

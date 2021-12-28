@@ -29,11 +29,24 @@ export default function TaskActive({
     NiceModal.show("TaskFullModal", { taskId: "123" });
   };
 
+  const handleEdit = () => {};
+
+  const handleDelete = () => {};
+
+  const actionItems = [
+    {
+      title: "Edit",
+      action: handleEdit,
+    },
+    {
+      title: "Archive",
+      action: handleDelete,
+    },
+  ];
+
   return (
-    <div
-      className="container rounded-lg max-w-sm bg-white pt-1 relative"
-    >
-      <ActionMenu />
+    <div className="container rounded-lg max-w-sm bg-white pt-1 relative">
+      <ActionMenu actionItems={actionItems} />
       <div className="px-2 pb-1" onClick={showModal}>
         <div className="flex flex-col mb-3">
           <span className="text-grey-darker font-medium text-sm">

@@ -3,14 +3,34 @@ import { useEffect, useRef, useState } from "react";
 //Components
 import IconTools from "../Icons/IconTools";
 
-export default function ActionMenu() {
+interface ActionItem {
+  title: string;
+  action: any;
+}
+
+interface ActionItems {
+  actionItems: ActionItem[];
+}
+
+function ActionItem({ title, action }: ActionItem) {
+  return (
+    <span
+      onClick={action}
+      className="hover:bg-[#f5f5f5] rounded-md px-1 text-grey-light cursor-pointer select-none"
+    >
+      {title}
+    </span>
+  );
+}
+
+export default function ActionMenu({ actionItems }: ActionItems) {
   const ref = useRef<any>();
 
   const [expanded, setExpanded] = useState(false);
-  const [isFirstRender, setIsFirstRender] = useState(true)
+  const [isFirstRender, setIsFirstRender] = useState(true);
 
   const handleClick = () => {
-    setIsFirstRender(false)
+    setIsFirstRender(false);
     setExpanded((prev) => !prev);
   };
 
@@ -37,17 +57,13 @@ export default function ActionMenu() {
         <IconTools />
       </div>
       <div
-        className={`${
-          expanded ? "scale-up-tr" : "scale-out-tr"
-        } ${isFirstRender ? "hidden" : ""} arrowBox flex flex-col bg-white py-2 px-1 absolute top-10`}
+        className={`${expanded ? "scale-up-tr" : "scale-out-tr"} ${
+          isFirstRender ? "hidden" : ""
+        } arrowBox flex flex-col bg-white py-2 px-1 absolute top-10`}
       >
-        <span className="arrow-up"></span>
-        <span className="hover:bg-[#f5f5f5] rounded-md px-1 text-grey-light cursor-pointer select-none">
-          Edit
-        </span>
-        <span className="hover:bg-[#f5f5f5] rounded-md px-1 text-grey-light cursor-pointer select-none">
-          Archive
-        </span>
+        {actionItems.map((item, i) => {
+          return <ActionItem key={i} title={item.title} action={item.action} />;
+        })}
       </div>
     </div>
   );
