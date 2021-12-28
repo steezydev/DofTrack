@@ -2,28 +2,16 @@ import { useEffect, useRef, useState } from "react";
 
 //Components
 import IconTools from "../Icons/IconTools";
+import ActionItem from "./ActionItem";
 
-interface ActionItem {
-  title: string;
-  action: any;
+//Types
+import { ActionItemData } from "../../types/TypesAction";
+
+interface IProps {
+  actionItems: ActionItemData[]
 }
 
-interface ActionItems {
-  actionItems: ActionItem[];
-}
-
-function ActionItem({ title, action }: ActionItem) {
-  return (
-    <span
-      onClick={action}
-      className="hover:bg-[#f5f5f5] rounded-md px-1 text-grey-light cursor-pointer select-none"
-    >
-      {title}
-    </span>
-  );
-}
-
-export default function ActionMenu({ actionItems }: ActionItems) {
+export default function ActionMenu({ actionItems }: IProps) {
   const ref = useRef<any>();
 
   const [expanded, setExpanded] = useState(false);
