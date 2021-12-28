@@ -1,7 +1,12 @@
+import NiceModal from "@ebay/nice-modal-react";
+
+//Components
 import Deadline from "../Deadline/Deadline";
 import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
+import ActionMenu from "../ActionMenu/ActionMenu";
+
+//Types
 import { Difficulties } from "../../types/TypesDifficulties";
-import NiceModal from '@ebay/nice-modal-react';
 
 interface IProps {
   id: string;
@@ -18,26 +23,29 @@ export default function TaskActive({
   goalTitle,
   isMore,
   deadline,
-  difficulty
+  difficulty,
 }: IProps) {
   const showModal = () => {
-    NiceModal.show('TaskFullModal', { taskId: '123' })
+    NiceModal.show("TaskFullModal", { taskId: "123" });
   };
 
   return (
-    <div className="container rounded-lg max-w-sm bg-white pt-1" onClick={showModal}>
-      <div className="px-2 pb-1">
+    <div
+      className="container rounded-lg max-w-sm bg-white pt-1 relative"
+    >
+      <ActionMenu />
+      <div className="px-2 pb-1" onClick={showModal}>
         <div className="flex flex-col mb-3">
           <span className="text-grey-darker font-medium text-sm">
             {goalTitle}
           </span>
-          <span className="font-medium text-black text-xl">
-            {title}
-          </span>
-          {isMore && <span className="font-medium text-grey-darker text-lg">...</span>}
+          <span className="font-medium text-black text-xl">{title}</span>
+          {isMore && (
+            <span className="font-medium text-grey-darker text-lg">...</span>
+          )}
         </div>
         <div className="flex row gap-3 justify-end flex-wrap">
-          <Deadline time={deadline}/>
+          <Deadline time={deadline} />
           <DifficultyBadge difficulty={difficulty} />
         </div>
       </div>

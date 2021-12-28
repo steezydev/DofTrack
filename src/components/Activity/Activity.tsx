@@ -1,9 +1,14 @@
+import { useEffect, useState } from "react";
+
+//Components
 import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
 import ButtonStart from "../Buttons/Button";
-import { Difficulties } from "../../types/TypesDifficulties";
-import { useEffect, useState } from "react";
 import Timer from "./Timer";
 import Placeholder from "./Placeholder";
+import ActionMenu from "../ActionMenu/ActionMenu";
+
+//Types
+import { Difficulties } from "../../types/TypesDifficulties";
 
 interface IProps {
   id: string;
@@ -40,7 +45,8 @@ export default function Activity({
   };
 
   return (
-    <div className="container rounded-lg max-w-sm bg-white pt-1 select-none">
+    <div className="container rounded-lg max-w-sm bg-white pt-1 select-none relative">
+      <ActionMenu />
       <div className="px-2 pb-1">
         <div className="flex flex-col">
           <span className="text-grey-darker font-medium text-sm">

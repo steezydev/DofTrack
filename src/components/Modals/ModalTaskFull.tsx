@@ -2,22 +2,31 @@ import NiceModal, { useModal } from "@ebay/nice-modal-react";
 import { useEffect, useState } from "react";
 
 //Constants
-import {DIFF_EASY, DIFF_HARD, DIFF_MEDIUM, DIFF_PICKER} from '../../constants/ConstantsDifficulties'
+import {
+  DIFF_EASY,
+  DIFF_HARD,
+  DIFF_MEDIUM,
+  DIFF_PICKER,
+} from "../../constants/ConstantsDifficulties";
 
 //Components
 import Deadline from "../Deadline/Deadline";
 import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
 import ButtonComplete from "../Buttons/ButtonComplete";
+import ActionMenu from "../ActionMenu/ActionMenu";
 
 //Types
 import { TaskData } from "../../types/TypesTask";
+
+//Helpers
+import { dateToString } from "../../helpers/time";
 
 //! Mock data
 const data: TaskData = {
   title: "Watch a youtube video",
   goalTitle: "Learn Javascript",
   text: "Watch video",
-  deadline: "10/11/2021",
+  deadline: new Date(),
   difficulty: "HARD",
   isActive: true,
 };
@@ -39,8 +48,8 @@ export default NiceModal.create(({ taskId }) => {
   const handleComplete = () => {
     //TODO: Save to the database
 
-    console.log(taskId)
-  }
+    console.log(taskId);
+  };
 
   return (
     <div
@@ -52,6 +61,7 @@ export default NiceModal.create(({ taskId }) => {
       ></div>
       {!isBusy && (
         <div className="w-full max-w-lg p-1 px-2 relative mx-auto my-auto rounded-lg shadow-lg bg-white animate-fade-in-up">
+          <ActionMenu/>
           <div className="flex flex-col mb-1">
             <span className="text-grey-darker font-medium text-sm">
               {taskData.goalTitle}
@@ -61,14 +71,14 @@ export default NiceModal.create(({ taskId }) => {
             </span>
           </div>
           <div className="flex row gap-2">
-            <Deadline time={taskData.deadline} />
+            <Deadline time={dateToString(taskData.deadline)} />
             <DifficultyBadge difficulty={taskData.difficulty} />
           </div>
           <div className="text-lg mt-5 text-black">
             <p className="mb-3">{taskData.text}</p>
           </div>
           <div className="mt-20 mb-1 grid place-items-end">
-            <ButtonComplete action={handleComplete}/>
+            <ButtonComplete action={handleComplete} />
           </div>
         </div>
       )}
