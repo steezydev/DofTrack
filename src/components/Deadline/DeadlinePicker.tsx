@@ -8,11 +8,11 @@ import Calendar from "../Calendar/Calendar";
 import { dateToString } from "../../helpers/time";
 
 //Hooks
-import useDropDown from '../../hooks/useDropDown'
+import useDropDown from "../../hooks/useDropDown";
 
 export default function DeadlinePeaker({ setDeadlineValue }: any) {
   const ref = useRef<any>();
-  
+
   const [deadline, setDeadline] = useState("Time");
   const [deadlineDate, setDeadlineDate] = useState(new Date());
 
@@ -24,20 +24,6 @@ export default function DeadlinePeaker({ setDeadlineValue }: any) {
     setDeadlineValue(date);
     setExpanded(false);
   };
-
-  useEffect(() => {
-    const checkIfClickedOutside = (e: any) => {
-      if (expanded && ref.current && !ref.current.contains(e.target)) {
-        setExpanded(false);
-      }
-    };
-
-    document.addEventListener("mousedown", checkIfClickedOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", checkIfClickedOutside);
-    };
-  }, [expanded]);
 
   return (
     <div ref={ref}>
