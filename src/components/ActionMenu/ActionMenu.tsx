@@ -7,6 +7,9 @@ import ActionItem from "./ActionItem";
 //Types
 import { ActionItemData } from "../../types/TypesAction";
 
+//Hooks
+import useDropDown from '../../hooks/useDropDown'
+
 interface IProps {
   actionItems: ActionItemData[]
 }
@@ -14,34 +17,15 @@ interface IProps {
 export default function ActionMenu({ actionItems }: IProps) {
   const ref = useRef<any>();
 
-  const [expanded, setExpanded] = useState(false);
   const [isFirstRender, setIsFirstRender] = useState(true);
-
-  const handleClick = () => {
-    setIsFirstRender(false);
-    setExpanded((prev) => !prev);
-  };
-
-  useEffect(() => {
-    const checkIfClickedOutside = (e: any) => {
-      if (expanded && ref.current && !ref.current.contains(e.target)) {
-        setExpanded(false);
-      }
-    };
-
-    document.addEventListener("mousedown", checkIfClickedOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", checkIfClickedOutside);
-    };
-  }, [expanded]);
+  const [expanded,, handleDropClick] = useDropDown(ref, () => setIsFirstRender(false))
 
   return (
     <div
       ref={ref}
       className="absolute right-0 -top-1 text-grey-func flex flex-col px-2 items-end"
     >
-      <div className="py-2 cursor-pointer " onClick={handleClick}>
+      <div className="py-2 cursor-pointer " onClick={handleDropClick}>
         <IconTools />
       </div>
       <div

@@ -5,49 +5,40 @@ import DifficultyBadgePickerItem from "./DifficultyBadgePickerItem";
 
 //Constants
 import { badgeOptions } from "../../constants/ConstantsDifficulties";
-import {DIFF_EASY, DIFF_HARD, DIFF_MEDIUM, DIFF_PICKER} from '../../constants/ConstantsDifficulties'
+import {
+  DIFF_EASY,
+  DIFF_HARD,
+  DIFF_MEDIUM,
+  DIFF_PICKER,
+} from "../../constants/ConstantsDifficulties";
 
 //Types
 import { Difficulties } from "../../types/TypesDifficulties";
 
+//Hooks
+import useDropDown from "../../hooks/useDropDown";
+
 interface IProps {
-  setDifficulty: any
+  setDifficulty: any;
 }
 
-export default function DifficultyBadgePicker({setDifficulty}: IProps) {
+export default function DifficultyBadgePicker({ setDifficulty }: IProps) {
   const ref = useRef<any>();
   const [selected, setSelected] = useState<Difficulties>(DIFF_PICKER);
-  const [expanded, setExpanded] = useState(false);
 
-  const handleClick = () => {
-    setExpanded((prevState) => !prevState);
-  };
+  const [expanded, setExpanded, handleDropClick] = useDropDown(ref);
 
   const handleSelect = (value: Difficulties) => {
     setSelected(value);
-    setDifficulty(value)
+    setDifficulty(value);
     setExpanded(false);
   };
-
-  useEffect(() => {
-    const checkIfClickedOutside = (e: any) => {
-      if (expanded && ref.current && !ref.current.contains(e.target)) {
-        setExpanded(false);
-      }
-    };
-
-    document.addEventListener("mousedown", checkIfClickedOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", checkIfClickedOutside);
-    };
-  }, [expanded]);
 
   return (
     <div ref={ref}>
       <div
         className="container flex row gap-1 w-fit select-none cursor-pointer"
-        onClick={handleClick}
+        onClick={handleDropClick}
       >
         <img
           className="object-scale-down w-4"

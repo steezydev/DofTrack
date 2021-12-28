@@ -1,20 +1,22 @@
 import { useEffect, useRef, useState } from "react";
-
-import Calendar from "../Calendar/Calendar";
 import "react-datepicker/dist/react-datepicker.css";
 
+//Components
+import Calendar from "../Calendar/Calendar";
+
+//Helpers
 import { dateToString } from "../../helpers/time";
+
+//Hooks
+import useDropDown from '../../hooks/useDropDown'
 
 export default function DeadlinePeaker({ setDeadlineValue }: any) {
   const ref = useRef<any>();
   
-  const [expanded, setExpanded] = useState(false);
   const [deadline, setDeadline] = useState("Time");
   const [deadlineDate, setDeadlineDate] = useState(new Date());
 
-  const handleClick = () => {
-    setExpanded((prevState) => !prevState);
-  };
+  const [expanded, setExpanded, handleDropClick] = useDropDown(ref);
 
   const handleDeadline = (date: Date) => {
     setDeadlineDate(date);
@@ -41,7 +43,7 @@ export default function DeadlinePeaker({ setDeadlineValue }: any) {
     <div ref={ref}>
       <div
         className="container flex row gap-1 w-fit cursor-pointer select-none"
-        onClick={handleClick}
+        onClick={handleDropClick}
       >
         <img
           className="object-scale-down w-4"

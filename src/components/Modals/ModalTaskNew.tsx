@@ -12,7 +12,10 @@ import { TaskData } from "../../types/TypesTask";
 import { Difficulties } from "../../types/TypesDifficulties";
 
 const goalDataMock = {
-  title: "Learn Javascript!!",
+  id: "123",
+  title: "Learn Javascript",
+  gems: 1790,
+  goalGems: 3000,
 };
 
 export default NiceModal.create((goadId) => {
