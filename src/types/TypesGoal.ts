@@ -1,6 +1,9 @@
 export interface GoalData {
+  id: string;
   title: string | undefined;
-  stats: {
+  gems: number;
+  goalGems: number;
+  stats?: {
     tasks: number;
     activities: number;
   };

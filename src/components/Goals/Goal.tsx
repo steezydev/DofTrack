@@ -1,6 +1,7 @@
-import React from "react";
-import GoalChart from "../Chart/GoalChart";
 import { useNavigate } from "react-router-dom";
+
+//Components
+import GoalChart from "../Chart/GoalChart";
 
 interface IProps {
   id: string;

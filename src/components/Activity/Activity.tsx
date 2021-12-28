@@ -9,6 +9,7 @@ import ActionMenu from "../ActionMenu/ActionMenu";
 
 //Types
 import { Difficulties } from "../../types/TypesDifficulties";
+import { ActionItemData } from "../../types/TypesAction";
 
 interface IProps {
   id: string;
@@ -48,7 +49,8 @@ export default function Activity({
 
   const handleDelete = () => {};
 
-  const actionItems = [
+  //Action menu items
+  const actionItems: ActionItemData[] = [
     {
       title: "Edit",
       action: handleEdit,
@@ -61,7 +63,7 @@ export default function Activity({
 
   return (
     <div className="container rounded-lg max-w-sm bg-white pt-1 select-none relative">
-      <ActionMenu actionItems={actionItems}/>
+      <ActionMenu actionItems={actionItems} />
       <div className="px-2 pb-1">
         <div className="flex flex-col">
           <span className="text-grey-darker font-medium text-sm">

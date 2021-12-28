@@ -1,14 +1,6 @@
 import NiceModal, { useModal } from "@ebay/nice-modal-react";
 import { useEffect, useState } from "react";
 
-//Constants
-import {
-  DIFF_EASY,
-  DIFF_HARD,
-  DIFF_MEDIUM,
-  DIFF_PICKER,
-} from "../../constants/ConstantsDifficulties";
-
 //Components
 import Deadline from "../Deadline/Deadline";
 import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
@@ -18,15 +10,15 @@ import ActionMenu from "../ActionMenu/ActionMenu";
 //Types
 import { TaskData } from "../../types/TypesTask";
 
-//Helpers
-import { dateToString } from "../../helpers/time";
 
 //! Mock data
 const data: TaskData = {
+  id: "123",
   title: "Watch a youtube video",
   goalTitle: "Learn Javascript",
   text: "Watch video",
   deadline: new Date(),
+  isMore: true,
   difficulty: "HARD",
   isActive: true,
 };
@@ -47,6 +39,7 @@ export default NiceModal.create(({ taskId }) => {
 
   const handleDelete = () => {};
 
+  //Action menu items
   const actionItems = [
     {
       title: "Edit",
@@ -86,7 +79,7 @@ export default NiceModal.create(({ taskId }) => {
             </span>
           </div>
           <div className="flex row gap-2">
-            <Deadline time={dateToString(taskData.deadline)} />
+            <Deadline time={taskData.deadline} />
             <DifficultyBadge difficulty={taskData.difficulty} />
           </div>
           <div className="text-lg mt-5 text-black">

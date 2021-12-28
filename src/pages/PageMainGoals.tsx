@@ -33,7 +33,7 @@ export default function PageMainGoals() {
             title="Do the project"
             goalTitle="Learn Javascript"
             isMore={true}
-            deadline="12/12/2021"
+            deadline={new Date()}
             difficulty="MEDIUM"
           />
           <TaskActive
@@ -41,7 +41,7 @@ export default function PageMainGoals() {
             title="Do the project"
             goalTitle="Learn Javascript"
             isMore={true}
-            deadline="12/12/2021"
+            deadline={new Date()}
             difficulty="MEDIUM"
           />
           <TaskActive
@@ -49,7 +49,7 @@ export default function PageMainGoals() {
             title="Do the project"
             goalTitle="Learn Javascript"
             isMore={true}
-            deadline="12/12/2021"
+            deadline={new Date()}
             difficulty="MEDIUM"
           />
           <TaskActive
@@ -57,7 +57,7 @@ export default function PageMainGoals() {
             title="Do the project"
             goalTitle="Learn Javascript"
             isMore={true}
-            deadline="12/12/2021"
+            deadline={new Date()}
             difficulty="MEDIUM"
           />
           <ButtonMore goalId='123'/>
@@ -76,7 +76,7 @@ export default function PageMainGoals() {
             title="Do the project"
             goalTitle="Learn Javascript"
             isMore={true}
-            deadline="12/12/2021"
+            deadline={new Date()}
             difficulty="MEDIUM"
           />
           <ButtonAdd action={() => showNewModal('123')}/>
@@ -95,7 +95,7 @@ export default function PageMainGoals() {
             title="Do the project"
             goalTitle="Learn Javascript"
             isMore={true}
-            deadline="12/12/2021"
+            deadline={new Date()}
             difficulty="MEDIUM"
           />
           <ButtonAdd action={() => showNewModal('123')}/>

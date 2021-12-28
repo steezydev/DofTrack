@@ -13,7 +13,7 @@ interface IProps {
   title: string;
   goalTitle: string;
   isMore: boolean;
-  deadline: string;
+  deadline: Date;
   difficulty: Difficulties;
 }
 
