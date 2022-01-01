@@ -10,8 +10,12 @@ import { dateToString } from "../../helpers/time";
 //Hooks
 import useDropDown from "../../hooks/useDropDown";
 
-export default function DeadlinePeaker({ setDeadlineValue }: any) {
-  const ref = useRef<any>();
+interface IProps {
+  setDeadlineValue: (date: Date) => void
+}
+
+export default function DeadlinePeaker({ setDeadlineValue }: IProps) {
+  const ref = useRef<HTMLDivElement>(null);
 
   const [deadline, setDeadline] = useState("Time");
   const [deadlineDate, setDeadlineDate] = useState(new Date());

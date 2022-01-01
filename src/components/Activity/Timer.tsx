@@ -1,11 +1,11 @@
 import { addZeroBefore, secondsToHms } from "../../helpers/time";
 
-interface ITimerProps {
+interface IProps {
   time?: number;
   gems?: number;
 }
 
-export default function Timer({ time = 0, gems = 0 }: ITimerProps) {
+export default function Timer({ time = 0, gems = 0 }: IProps) {
   const timerString = secondsToHms(time);
 
   return (

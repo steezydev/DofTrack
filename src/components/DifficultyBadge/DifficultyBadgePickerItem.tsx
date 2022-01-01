@@ -1,7 +1,7 @@
 interface IProps {
   title: string;
   img: string;
-  action: any;
+  action: () => void;
 }
 
 export default function DifficultyBadgePickerItem({ title, img, action }: IProps) {

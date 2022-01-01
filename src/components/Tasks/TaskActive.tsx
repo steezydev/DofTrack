@@ -7,15 +7,9 @@ import ActionMenu from "../ActionMenu/ActionMenu";
 
 //Types
 import { Difficulties } from "../../types/TypesDifficulties";
+import { TaskData } from "../../types/TypesTask";
 
-interface IProps {
-  id: string;
-  title: string;
-  goalTitle: string;
-  isMore: boolean;
-  deadline: Date;
-  difficulty: Difficulties;
-}
+type IProps = Omit<TaskData, 'text'>
 
 export default function TaskActive({
   id,

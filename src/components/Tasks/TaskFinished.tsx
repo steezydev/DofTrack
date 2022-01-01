@@ -1,16 +1,12 @@
+//Components
 import Deadline from "../Deadline/Deadline";
 import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
-import { Difficulties } from "../../types/TypesDifficulties";
 
-interface IProps {
-  id: string;
-  title: string;
-  goalTitle: string;
-  isMore: boolean;
-  deadline: Date;
-  difficulty: Difficulties;
-  gems: number
-}
+//Types
+import { Difficulties } from "../../types/TypesDifficulties";
+import { TaskData } from "../../types/TypesTask";
+
+type IProps = Omit<TaskData, 'text'>
 
 export default function TaskFinished({
   id,
@@ -19,7 +15,7 @@ export default function TaskFinished({
   isMore,
   deadline,
   difficulty,
-  gems
+  gems,
 }: IProps) {
   return (
     <div className="container relative rounded-lg max-w-sm bg-white pt-1">
@@ -35,13 +31,13 @@ export default function TaskFinished({
           <span className="text-grey-darker font-medium text-sm">
             {goalTitle}
           </span>
-          <span className="font-medium text-black text-xl">
-            {title}
-          </span>
-          {isMore && <span className="font-medium text-grey-darker text-lg">...</span>}
+          <span className="font-medium text-black text-xl">{title}</span>
+          {isMore && (
+            <span className="font-medium text-grey-darker text-lg">...</span>
+          )}
         </div>
         <div className="flex row gap-3 justify-end flex-wrap">
-          <Deadline time={deadline}/>
+          <Deadline time={deadline} />
           <DifficultyBadge difficulty={difficulty} />
         </div>
       </div>

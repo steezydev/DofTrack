@@ -16,6 +16,12 @@ const goalDataMock = {
   title: "Learn Javascript",
   gems: 1790,
   goalGems: 3000,
+  percent: 50,
+  stats: {
+    tasks: 12,
+    activities: 2,
+  },
+  daysSpent: 2,
 };
 
 export default NiceModal.create((goadId) => {
@@ -32,19 +38,19 @@ export default NiceModal.create((goadId) => {
   }, []);
 
   const setDifficulty = (value: Difficulties) => {
-    setNewTaskData((prevState) => ({...prevState, difficulty: value}));
-  }
-
-  const setDeadlineValue = (date: Date) => {
-    setNewTaskData((prevState) => ({...prevState, deadline: date}));
-  }
-
-  const handleChangeTitle = (e: any) => {
-    setNewTaskData((prevState) => ({...prevState, title: e.target.value}));
+    setNewTaskData((prevState) => ({ ...prevState, difficulty: value }));
   };
 
-  const handleChangeText= (value: any) => {
-    setNewTaskData((prevState) => ({...prevState, text: value}));
+  const setDeadlineValue = (date: Date) => {
+    setNewTaskData((prevState) => ({ ...prevState, deadline: date }));
+  };
+
+  const handleChangeTitle = (e: any) => {
+    setNewTaskData((prevState) => ({ ...prevState, title: e.target.value }));
+  };
+
+  const handleChangeText = (value: any) => {
+    setNewTaskData((prevState) => ({ ...prevState, text: value }));
   };
 
   const handleSave = () => {
@@ -78,12 +84,12 @@ export default NiceModal.create((goadId) => {
           ></input>
         </div>
         <div className="flex row gap-2">
-          <DeadlinePicker setDeadlineValue={setDeadlineValue}/>
-          <DifficultyBadgePicker setDifficulty={setDifficulty}/>
+          <DeadlinePicker setDeadlineValue={setDeadlineValue} />
+          <DifficultyBadgePicker setDifficulty={setDifficulty} />
         </div>
         <div className="text-lg p-1 mt-5 text-black">
           <div
-            onInput={e => handleChangeText(e.currentTarget.textContent)}
+            onInput={(e) => handleChangeText(e.currentTarget.textContent)}
             contentEditable="true"
             className="customScroll mb-3 w-full p-1 outline-2 outline-dashed outline-grey-darker rounded-lg min-h-[200px] max-h-[400px] overflow-y-scroll"
           ></div>

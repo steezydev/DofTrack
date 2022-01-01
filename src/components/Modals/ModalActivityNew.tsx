@@ -13,7 +13,16 @@ import { Difficulties } from "../../types/TypesDifficulties";
 import { Timer } from "../../types/TypesTimer";
 
 const goalDataMock = {
+  id: "123",
   title: "Learn Javascript",
+  gems: 1790,
+  goalGems: 3000,
+  percent: 50,
+  stats: {
+    tasks: 12,
+    activities: 2
+  },
+  daysSpent: 2
 };
 
 export default NiceModal.create((goadId) => {
@@ -82,7 +91,7 @@ export default NiceModal.create((goadId) => {
         <div className="flex row gap-2">
           <DifficultyBadgePicker setDifficulty={setDifficulty} />
         </div>
-        <TimerActivity setTimer={setTimer}/>
+        <TimerActivity setTimer={setTimer} />
         <div className="mt-2 mb-1 grid place-items-end">
           <ButtonSave action={handleSave} />
         </div>

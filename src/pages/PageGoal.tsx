@@ -23,6 +23,12 @@ const data = {
   title: "Learn Javascript",
   gems: 1790,
   goalGems: 3000,
+  percent: 50,
+  stats: {
+    tasks: 12,
+    activities: 2
+  },
+  daysSpent: 2
 };
 
 const tasks: TaskData[] = [

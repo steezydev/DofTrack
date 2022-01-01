@@ -19,13 +19,14 @@ import { Difficulties } from "../../types/TypesDifficulties";
 import useDropDown from "../../hooks/useDropDown";
 
 interface IProps {
-  setDifficulty: any;
+  setDifficulty: (value: Difficulties) => void;
 }
 
 export default function DifficultyBadgePicker({ setDifficulty }: IProps) {
   const ref = useRef<any>();
   const [selected, setSelected] = useState<Difficulties>(DIFF_PICKER);
 
+  //TODO: Try using with reducer hook
   const [expanded, setExpanded, handleDropClick] = useDropDown(ref);
 
   const handleSelect = (value: Difficulties) => {

@@ -14,7 +14,11 @@ import {
 //Helpers
 import { addZeroBefore } from "../../helpers/time";
 
-export default function TimerActivity({ setTimer }: any) {
+interface IProps {
+  setTimer: (value: Timer) => void;
+}
+
+export default function TimerActivity({ setTimer }: IProps) {
   //Interval ref
   const timer = useRef<any>(null);
 
@@ -62,7 +66,6 @@ export default function TimerActivity({ setTimer }: any) {
   useEffect(() => {
     setTimer(timerValue);
   }, [timerValue]);
-
 
   return (
     <div className=" flex items-center justify-center text-3xl text-blue my-5 ">

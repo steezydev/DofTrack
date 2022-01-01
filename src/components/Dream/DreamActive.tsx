@@ -1,14 +1,10 @@
+//Helpers
 import { numberWithSpaces } from "../../helpers/numbers";
 
-interface IProps {
-  title: string;
-  gems: number;
-  gemsGoal: number;
-  goalsNumber: number;
-  daysNumber: number;
-  tasksNumber: number;
-  isActive?: boolean;
-}
+//Types
+import { DreamData } from "../../types/TypesDream";
+
+interface IProps extends DreamData {}
 
 export default function DreamActive({
   title,
@@ -29,7 +25,13 @@ export default function DreamActive({
           <span className="text-xl font-medium">{title}</span>
         </div>
         <div className="text-xl flex items-center gap-1">
-          {isActive ? <span>{gemsString} / {gemsGoalString}</span> : <span>{gemsGoalString}</span>}
+          {isActive ? (
+            <span>
+              {gemsString} / {gemsGoalString}
+            </span>
+          ) : (
+            <span>{gemsGoalString}</span>
+          )}
           <span className="inline-block">
             <img className="object-scale-down w-4" src="/images/gem.png"></img>
           </span>

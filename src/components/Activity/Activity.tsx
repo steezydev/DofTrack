@@ -10,14 +10,9 @@ import ActionMenu from "../ActionMenu/ActionMenu";
 //Types
 import { Difficulties } from "../../types/TypesDifficulties";
 import { ActionItemData } from "../../types/TypesAction";
+import {ActivityData} from '../../types/TypesActivity'
 
-interface IProps {
-  id: string;
-  title: string;
-  goalTitle: string;
-  timeSpent: string;
-  difficulty: Difficulties;
-}
+type IProps = Omit<ActivityData, 'goalTime'>
 
 export default function Activity({
   id,

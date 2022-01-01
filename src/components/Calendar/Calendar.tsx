@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 
 interface IProps {
-  handleDeadline: any;
+  handleDeadline: (date: Date) => void;
   date: Date;
 }
 

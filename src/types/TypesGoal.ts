@@ -1,10 +1,12 @@
 export interface GoalData {
   id: string;
-  title: string | undefined;
+  title: string;
+  percent: number;
   gems: number;
   goalGems: number;
-  stats?: {
+  stats: {
     tasks: number;
     activities: number;
   };
+  daysSpent: number
 }

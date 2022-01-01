@@ -3,17 +3,10 @@ import { useNavigate } from "react-router-dom";
 //Components
 import GoalChart from "../Chart/GoalChart";
 
-interface IProps {
-  id: string;
-  title: string;
-  percent: number;
-  gems: number;
-  stats: {
-    tasks: number;
-    activities: number;
-  };
-  goalGems?: number;
-}
+//Types
+import { GoalData } from "../../types/TypesGoal";
+
+type IProps = Omit<GoalData, 'daysSpent'>
 
 export default function Goal({
   id,
@@ -21,7 +14,7 @@ export default function Goal({
   percent,
   gems,
   stats,
-  goalGems = 0,
+  goalGems,
 }: IProps) {
   const navigate = useNavigate();
 
