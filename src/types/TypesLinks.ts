@@ -1,9 +1,8 @@
-export interface Link {
+export interface ILink {
   title: string;
-  isActive?: boolean;
   path: string;
 }
 
 export interface Links {
-  links: Link[];
+  links: ILink[];
 }

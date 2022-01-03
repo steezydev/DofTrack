@@ -14,21 +14,19 @@ NiceModal.register("ActivityNewModal", ModalActivityNew);
 
 function App() {
   return (
-    <NiceModal.Provider>
-      <div>
-        <h1>Bookkeeper!</h1>
+    <div>
+      <h1>Bookkeeper!</h1>
 
-        <nav
-          style={{
-            borderBottom: "solid 1px",
-            paddingBottom: "1rem",
-          }}
-        >
-          <Link to="/main-goals">Main Goals</Link> |{" "}
-          <Link to="/goals">Goals</Link>
-        </nav>
-      </div>
-    </NiceModal.Provider>
+      <nav
+        style={{
+          borderBottom: "solid 1px",
+          paddingBottom: "1rem",
+        }}
+      >
+        <Link to="/main-goals">Main Goals</Link> |{" "}
+        <Link to="/goals">Goals</Link>
+      </nav>
+    </div>
   );
 }
 

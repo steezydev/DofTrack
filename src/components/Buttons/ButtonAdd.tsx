@@ -1,5 +1,5 @@
 interface IProps {
-  action: any;
+  action: () => void;
 }
 
 export default function ButtonAdd({ action }: IProps) {

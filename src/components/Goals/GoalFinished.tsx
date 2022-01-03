@@ -3,9 +3,9 @@ import { numberWithSpaces } from "../../helpers/numbers";
 //Types
 import { GoalData } from "../../types/TypesGoal";
 
-interface IProps extends GoalData {}
+type IProps = Omit<GoalData, 'percent' | 'goalGems'>
 
-export default function GoalFinished({ id, title, daysSpent, gems }: IProps) {
+export default function GoalFinished({ id, title, daysSpent, gems, stats }: IProps) {
   const gemsString = numberWithSpaces(gems);
 
   return (

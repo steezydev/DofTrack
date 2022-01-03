@@ -8,5 +8,6 @@ export interface GoalData {
     tasks: number;
     activities: number;
   };
-  daysSpent: number
+  daysSpent: number,
+  isActive?: boolean
 }

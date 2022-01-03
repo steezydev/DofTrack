@@ -1,5 +1,5 @@
 import NiceModal from "@ebay/nice-modal-react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 //Components
@@ -13,12 +13,10 @@ import NavBar from "../components/Nav/NavBar";
 import { GoalData } from "../types/TypesGoal";
 import { ActivityData } from "../types/TypesActivity";
 import { TaskData } from "../types/TypesTask";
-
-//Constants
-import { GoalPageLinks } from "../constants/ConstantsGoalPageLinks";
+import { ILink } from "../types/TypesLinks";
 
 //!Mock data START
-const data = {
+const data: GoalData = {
   id: "123",
   title: "Learn Javascript",
   gems: 1790,
@@ -26,9 +24,9 @@ const data = {
   percent: 50,
   stats: {
     tasks: 12,
-    activities: 2
+    activities: 2,
   },
-  daysSpent: 2
+  daysSpent: 2,
 };
 
 const tasks: TaskData[] = [
@@ -36,7 +34,7 @@ const tasks: TaskData[] = [
     id: "123",
     title: "Do the project",
     goalTitle: "Learn Javascript",
-    text: '123',
+    text: "123",
     isMore: true,
     deadline: new Date(),
     difficulty: "MEDIUM",
@@ -49,13 +47,18 @@ const activities: ActivityData[] = [
     title: "Do the project",
     goalTitle: "Learn Javascript",
     timeSpent: "1hr 30min",
-    goalTime: {HOURS: 3, MINUTES: 15},
+    goalTime: { HOURS: 3, MINUTES: 15 },
     difficulty: "EASY",
   },
 ];
 //!Mock data END
 
 export default function PageGoal() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filter = searchParams.get("filter");
+
+  console.log(filter)
+
   const { id } = useParams();
 
   const [isBusy, setIsBusy] = useState(true);
@@ -72,15 +75,41 @@ export default function PageGoal() {
     NiceModal.show("ActivityNewModal", { goalId });
   };
 
+  const GoalPageLinks: ILink[] = [
+    {
+      title: "All",
+      path: `/goal/${id}`,
+    },
+    {
+      title: "Tasks",
+      path: `/goal/${id}?filter=tasks`,
+    },
+    {
+      title: "Activities",
+      path: `/goal/${id}?filter=activities`,
+    },
+    {
+      title: "Finished",
+      path: `/goal/${id}?filter=finished`,
+    },
+  ];
+
   useEffect(() => {
+    let isApiSubscribed = true;
     //API Call
     //TODO: Get Goal from database
 
     //! Mock data
-    setGoalData(data);
-    setTasksData(tasks);
-    setActivitiesData(activities);
-    setIsBusy(false);
+    if (isApiSubscribed) {
+      setGoalData(data);
+      setTasksData(tasks);
+      setActivitiesData(activities);
+      setIsBusy(false);
+    }
+
+    return () => {
+      isApiSubscribed = false;
+    };
   }, []);
 
   return (
@@ -116,7 +145,7 @@ export default function PageGoal() {
                       difficulty={item.difficulty}
                     />
                   ))}
-                  <ButtonAdd action={() => showNewActivityModal("123")} />
+                  <ButtonAdd action={() => showNewActivityModal(goalData.id)} />
                 </div>
                 <div className="p-2 flex flex-row justify-start content-start gap-5 items-start w-full flex-wrap ">
                   {tasksData.map((item, i) => (
@@ -130,7 +159,7 @@ export default function PageGoal() {
                       difficulty={item.difficulty}
                     />
                   ))}
-                  <ButtonAdd action={() => showNewTaskModal("123")} />
+                  <ButtonAdd action={() => showNewTaskModal(goalData.id)} />
                 </div>
               </div>
             </div>
