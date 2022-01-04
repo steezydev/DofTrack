@@ -46,9 +46,10 @@ const activities: ActivityData[] = [
     id: "123",
     title: "Do the project",
     goalTitle: "Learn Javascript",
-    timeSpent: "1hr 30min",
-    goalTime: { HOURS: 3, MINUTES: 15 },
+    timeSpent: 0,
+    timeLeft: 2,
     difficulty: "EASY",
+    status: "DOWN"
   },
 ];
 //!Mock data END
@@ -143,6 +144,8 @@ export default function PageGoal() {
                       goalTitle={item.goalTitle}
                       timeSpent={item.timeSpent}
                       difficulty={item.difficulty}
+                      status={item.status}
+                      timeLeft={item.timeLeft}
                     />
                   ))}
                   <ButtonAdd action={() => showNewActivityModal(goalData.id)} />

@@ -12,6 +12,9 @@ import { ActivityData } from "../../types/TypesActivity";
 import { Difficulties } from "../../types/TypesDifficulties";
 import { Timer } from "../../types/TypesTimer";
 
+//Helpers
+import {timerToSeconds} from '../../helpers/time'
+
 const goalDataMock = {
   id: "123",
   title: "Learn Javascript",
@@ -54,7 +57,7 @@ export default NiceModal.create((goadId) => {
   const setTimer = (value: Timer) => {
     setNewActivityData((prevState) => ({
       ...prevState,
-      goalTime: value,
+      timeLeft: timerToSeconds(value),
     }));
   };
 

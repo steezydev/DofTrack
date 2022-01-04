@@ -18,15 +18,24 @@ export default function PageMainGoals() {
       <header className="p-4 mb-3">
         <h1 className="text-center text-4xl font-bold">Main Goals</h1>
       </header>
-      <div className="p-5 flex flex-row justify-center gap-10">
-        <div className="flex flex-col gap-5 w-max grow items-center">
-          <Goal id="123" title="Learn Javascript" percent={60} gems={10000} stats={{tasks: 12, activities: 2}} goalGems={14000}/>
+      <div className="p-5 flex flex-row justify-evenly gap-10">
+        <div className="flex flex-col gap-5 w-96 items-center">
+          <Goal
+            id="123"
+            title="Learn Javascript"
+            percent={60}
+            gems={10000}
+            stats={{ tasks: 12, activities: 2 }}
+            goalGems={14000}
+          />
           <Activity
             id="123"
             title="Do the project"
             goalTitle="Learn Javascript"
-            timeSpent="1hr 30min"
+            timeSpent={0}
             difficulty="EASY"
+            status="DOWN"
+            timeLeft={2}
           />
           <TaskActive
             id="123"
@@ -60,16 +69,25 @@ export default function PageMainGoals() {
             deadline={new Date()}
             difficulty="MEDIUM"
           />
-          <ButtonMore goalId='123'/>
+          <ButtonMore goalId="123" />
         </div>
-        <div className="flex flex-col gap-5 w-max grow items-center">
-          <Goal id="123" title="Learn Javascript" percent={60} gems={10000} stats={{tasks: 12, activities: 2}} goalGems={14000}/>
+        <div className="flex flex-col gap-5 w-96 items-center">
+          <Goal
+            id="123"
+            title="Learn Javascript"
+            percent={60}
+            gems={10000}
+            stats={{ tasks: 12, activities: 2 }}
+            goalGems={14000}
+          />
           <Activity
             id="123"
             title="Do the project"
             goalTitle="Learn Javascript"
-            timeSpent="1hr 30min"
+            timeSpent={0}
             difficulty="EASY"
+            status="REACHED"
+            timeLeft={0}
           />
           <TaskActive
             id="123"
@@ -79,16 +97,25 @@ export default function PageMainGoals() {
             deadline={new Date()}
             difficulty="MEDIUM"
           />
-          <ButtonAdd action={() => showNewModal('123')}/>
+          <ButtonAdd action={() => showNewModal("123")} />
         </div>
-        <div className="flex flex-col gap-5 w-max grow items-center">
-          <Goal id="123" title="Learn Javascript" percent={60} gems={10000} stats={{tasks: 12, activities: 2}} goalGems={14000}/>
+        <div className="flex flex-col gap-5 w-96 items-center">
+          <Goal
+            id="123"
+            title="Learn Javascript"
+            percent={60}
+            gems={10000}
+            stats={{ tasks: 12, activities: 2 }}
+            goalGems={14000}
+          />
           <Activity
             id="123"
             title="Do the project"
             goalTitle="Learn Javascript"
-            timeSpent="1hr 30min"
+            timeSpent={1000}
             difficulty="EASY"
+            status="UP"
+            timeLeft={0}
           />
           <TaskActive
             id="123"
@@ -98,7 +125,7 @@ export default function PageMainGoals() {
             deadline={new Date()}
             difficulty="MEDIUM"
           />
-          <ButtonAdd action={() => showNewModal('123')}/>
+          <ButtonAdd action={() => showNewModal("123")} />
         </div>
       </div>
     </main>

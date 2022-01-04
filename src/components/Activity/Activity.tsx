@@ -10,9 +10,12 @@ import ActionMenu from "../ActionMenu/ActionMenu";
 //Types
 import { Difficulties } from "../../types/TypesDifficulties";
 import { ActionItemData } from "../../types/TypesAction";
-import {ActivityData} from '../../types/TypesActivity'
+import { ActivityData } from "../../types/TypesActivity";
 
-type IProps = Omit<ActivityData, 'goalTime'>
+//Helpers
+import { timerToSeconds } from "../../helpers/time";
+
+type IProps = ActivityData;
 
 export default function Activity({
   id,
@@ -20,15 +23,25 @@ export default function Activity({
   goalTitle,
   timeSpent,
   difficulty,
+  timeLeft,
+  status,
 }: IProps) {
-  const [timer, setTimer] = useState(0);
+  const [timer, setTimer] = useState(-1);
   const [active, setActive] = useState(false);
+  const [actStatus, setActStatus] = useState(status);
 
+  //setTimer(isReached ? timeSpent : timeLeft)
+  useEffect(() => {
+    setTimer(actStatus == "UP" ? timeSpent : timeLeft);
+  }, []);
+
+  //Updating the timer
   useEffect(() => {
     let interval: any;
+    let mod = actStatus == "UP" ? 1 : -1;
     if (active) {
       interval = setInterval(() => {
-        setTimer((prevTime) => prevTime + 1);
+        setTimer((prevTime) => prevTime + mod);
       }, 1000);
     } else if (!active) {
       clearInterval(interval);
@@ -36,8 +49,26 @@ export default function Activity({
     return () => clearInterval(interval);
   }, [active]);
 
+  //Checking the timer state
+  useEffect(() => {
+    if (timer == 0 && actStatus == "DOWN") {
+      //TODO: Set value in the db
+      setActive(false);
+      setActStatus("REACHED");
+    }
+  }, [timer]);
+
   const handleClick = () => {
     setActive((prevState) => !prevState);
+  };
+
+  const handleContinue = () => {
+    //TODO: Set value in the db
+    setActStatus("UP")
+  };
+
+  const handleClose = () => {
+    //TODO: Set value in the db
   };
 
   const handleEdit = () => {};
@@ -65,13 +96,34 @@ export default function Activity({
             {goalTitle}
           </span>
           <span className="font-medium text-black text-xl">{title}</span>
-          <span className="font-medium text-black text-sm">{timeSpent}</span>
+          {/*<span className="font-medium text-black text-sm">{timeSpent}</span>*/}
         </div>
-        {active ? <Timer time={timer} /> : <Placeholder />}
-        <div className="grid place-items-center mt-4">
-          <ButtonStart action={handleClick} type={active ? "stop" : "start"} />
-        </div>
-        <div className="grid place-items-end -mt-1">
+        {actStatus == "REACHED" && timeSpent == 0 ? (
+          <div className="mt-5">
+            <div className="grid place-items-center animate-fade-in-down">
+              <span className="text-xl text-center">
+                Would you like to <span className="text-red">close</span> the
+                activity or <span className="text-blue">continue</span>?
+              </span>
+            </div>
+            <div className="flex flex-row justify-center gap-4 mt-4 animate-fade-in">
+              <ButtonStart action={handleClose} type={"close"} />
+              <ButtonStart action={handleContinue} type={"continue"} />
+            </div>
+          </div>
+        ) : (
+          <div>
+            <Timer time={timer} showGems={actStatus == "UP"}/>
+            <div className="grid place-items-center mt-4">
+              <ButtonStart
+                action={handleClick}
+                type={active ? "stop" : "start"}
+              />
+            </div>
+          </div>
+        )}
+
+        <div className="grid place-items-end mt-1">
           <DifficultyBadge difficulty={difficulty} />
         </div>
       </div>

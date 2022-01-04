@@ -5,7 +5,8 @@ export interface ActivityData {
   id: string;
   title: string;
   goalTitle: string;
-  timeSpent: string;
-  goalTime: Timer;
+  timeSpent: number; //seconds
+  timeLeft: number; //seconds
   difficulty: Difficulties;
+  status: "DOWN" | "REACHED" | "UP"
 }

@@ -1,4 +1,4 @@
-type ButtonTypes = "start" | "stop";
+type ButtonTypes = "start" | "stop" | "continue" | "close";
 
 interface IProps {
   type: ButtonTypes;
@@ -16,6 +16,16 @@ const buttonOptions = {
     hover: "hover:bg-red-hover",
     text: "Stop",
   },
+  continue: {
+    color: "bg-blue",
+    hover: "hover:bg-blue-hover",
+    text: "Continue"
+  },
+  close: {
+    color: "bg-red",
+    hover: "hover:bg-red-hover",
+    text: "Close"
+  }
 };
 
 export default function ButtonStart({ type, action }: IProps) {
