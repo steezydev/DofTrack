@@ -45,6 +45,7 @@ export default function PageGoals() {
     console.log(loading);
   }, [goals]);
 
+
   return (
     <main>
       <div>
@@ -57,7 +58,7 @@ export default function PageGoals() {
         <div className="p-10">
           {!loading ? (
             goals != undefined && goals.length > 0 ? (
-              <div className="flex flex-row justify-around gap-6 flex-wrap px-10">
+              <div className="flex flex-row justify-around gap-6 flex-wrap px-10 animate-fade-in">
                 {goals.map((item, i) => {
                   {
                     return item.isActive ? (

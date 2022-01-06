@@ -114,29 +114,32 @@ export default function PageGoal() {
   return (
     <main>
       {!loadingGoals ? (
-        <div>
+        <div className="animate-fade-in">
           {goalData != undefined ? (
-            <header className="p-4 mb-3">
-              <h1 className="text-center text-4xl font-bold">
-                {goalData!.title}
-              </h1>
-              <div className="flex justify-center gap-1">
-                <h2 className="text-center text-2xl">
-                  {goalData!.gems} / {goalData!.goalGems}{" "}
-                </h2>
-                <img
-                  className="object-scale-down w-6"
-                  src="/images/gem.png"
-                ></img>
-              </div>
-            </header>
+            <div className="animate-fade-in">
+              <header className="p-4 mb-3">
+                <h1 className="text-center text-4xl font-bold">
+                  {goalData!.title}
+                </h1>
+                <div className="flex justify-center gap-1">
+                  <h2 className="text-center text-2xl">
+                    {goalData!.gems} / {goalData!.goalGems}{" "}
+                  </h2>
+                  <img
+                    className="object-scale-down w-6"
+                    src="/images/gem.png"
+                  ></img>
+                </div>
+              </header>
+
+              <NavBar links={GoalPageLinks} />
+            </div>
           ) : (
             <Navigate to="/404" />
           )}
-          <NavBar links={GoalPageLinks} />
           <div className="p-10">
             {!loadingActivities && !loadingTasks && (
-              <div className="mb-10">
+              <div className="mb-10 animate-fade-in-up">
                 <h1 className="text-2xl font-medium">Active</h1>
                 <div className="flex flex-row justify-between w-full grow">
                   <div className="p-2 flex flex-col items-start gap-5 w-96 mr-5">
@@ -180,7 +183,7 @@ export default function PageGoal() {
             {!loadingTasksFinished &&
               (tasksFinishedData != undefined &&
               tasksFinishedData.length > 0 ? (
-                <div>
+                <div className="animate-fade-in-up">
                   <h1 className="text-2xl font-medium mb-3">Finished</h1>
 
                   <div className="flex flex-row justify-start content-start gap-5 items-start w-full flex-wrap">
@@ -204,7 +207,7 @@ export default function PageGoal() {
           </div>
         </div>
       ) : (
-        <Loading />
+        <Loading isFull={true} />
       )}
     </main>
   );
