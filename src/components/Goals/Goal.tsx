@@ -6,12 +6,11 @@ import GoalChart from "../Chart/GoalChart";
 //Types
 import { GoalData } from "../../types/TypesGoal";
 
-type IProps = Omit<GoalData, 'daysSpent'>
+type IProps = Omit<GoalData, 'creationDate'>
 
 export default function Goal({
   id,
   title,
-  percent,
   gems,
   stats,
   goalGems,
@@ -21,6 +20,8 @@ export default function Goal({
   const openGoalPage = () => {
     navigate(`/goal/${id}`);
   };
+
+  const percent = gems / goalGems * 100
 
   return (
     <div

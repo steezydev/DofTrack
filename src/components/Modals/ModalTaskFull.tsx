@@ -1,5 +1,9 @@
 import NiceModal, { useModal } from "@ebay/nice-modal-react";
 import { useEffect, useState } from "react";
+import { collection, doc, query, where } from "firebase/firestore";
+
+//Firebase
+import db from "../../firebase/firebase";
 
 //Components
 import Deadline from "../Deadline/Deadline";
@@ -9,6 +13,13 @@ import ActionMenu from "../ActionMenu/ActionMenu";
 
 //Types
 import { TaskData } from "../../types/TypesTask";
+
+//Hooks
+import {
+  useDocumentData,
+  useDocument,
+  useCollectionData,
+} from "react-firebase-hooks/firestore";
 
 
 //! Mock data

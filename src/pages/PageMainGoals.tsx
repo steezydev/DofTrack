@@ -1,5 +1,9 @@
 import React from "react";
 import NiceModal from "@ebay/nice-modal-react";
+import { collection, doc, query, where, limit } from "firebase/firestore";
+
+//Firebase
+import db from "../firebase/firebase";
 
 //Components
 import Goal from "../components/Goals/Goal";
@@ -8,10 +12,26 @@ import TaskActive from "../components/Tasks/TaskActive";
 import ButtonAdd from "../components/Buttons/ButtonAdd";
 import ButtonMore from "../components/Buttons/ButtonMore";
 
+//Hooks
+import {
+  useDocumentData,
+  useDocument,
+  useCollectionData,
+} from "react-firebase-hooks/firestore";
+
 export default function PageMainGoals() {
   const showNewModal = (goalId: string) => {
     NiceModal.show("TaskNewModal", { goalId });
   };
+
+  const [mainGoals, loadingGolas, errorGoals] = useCollectionData(
+    query(collection(db, "goals"), where("isMain", "==", true), limit(3)),
+    {
+      idField: "id",
+    }
+  );
+
+  
 
   return (
     <main>
@@ -23,7 +43,6 @@ export default function PageMainGoals() {
           <Goal
             id="123"
             title="Learn Javascript"
-            percent={60}
             gems={10000}
             stats={{ tasks: 12, activities: 2 }}
             goalGems={14000}
@@ -75,7 +94,6 @@ export default function PageMainGoals() {
           <Goal
             id="123"
             title="Learn Javascript"
-            percent={60}
             gems={10000}
             stats={{ tasks: 12, activities: 2 }}
             goalGems={14000}
@@ -103,7 +121,6 @@ export default function PageMainGoals() {
           <Goal
             id="123"
             title="Learn Javascript"
-            percent={60}
             gems={10000}
             stats={{ tasks: 12, activities: 2 }}
             goalGems={14000}
