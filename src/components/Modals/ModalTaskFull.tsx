@@ -1,106 +1,81 @@
 import NiceModal, { useModal } from "@ebay/nice-modal-react";
-import { useEffect, useState } from "react";
-import { collection, doc, query, where } from "firebase/firestore";
-
-//Firebase
-import db from "../../firebase/firebase";
 
 //Components
 import Deadline from "../Deadline/Deadline";
 import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
 import ButtonComplete from "../Buttons/ButtonComplete";
 import ActionMenu from "../ActionMenu/ActionMenu";
-
-//Types
-import { TaskData } from "../../types/TypesTask";
+import Loading from "../Loading/Loading";
 
 //Hooks
-import {
-  useDocumentData,
-  useDocument,
-  useCollectionData,
-} from "react-firebase-hooks/firestore";
+import useGetTask from "../../hooks/useGetTask";
+import useGetGoal from "../../hooks/useGetGoal";
 
+export default NiceModal.create(
+  ({ taskId, goalId }: { taskId: string; goalId: string }) => {
+    const modal = useModal();
 
-//! Mock data
-const data: TaskData = {
-  id: "123",
-  title: "Watch a youtube video",
-  goalTitle: "Learn Javascript",
-  text: "Watch video",
-  deadline: new Date(),
-  isMore: true,
-  difficulty: "HARD",
-  isActive: true,
-};
+    const [taskData, loading] = useGetTask(taskId, goalId);
+    const [goalData, loadingGoal] = useGetGoal(goalId);
 
-export default NiceModal.create(({ taskId }) => {
-  const modal = useModal();
+    const handleComplete = () => {
+      //TODO: Save to the database
+      console.log(goalId);
+      console.log(taskId);
+    };
 
-  const [isBusy, setIsBusy] = useState(true);
-  const [taskData, setTaskData] = useState<TaskData>({} as TaskData);
+    const handleEdit = () => {};
 
-  const handleComplete = () => {
-    //TODO: Save to the database
+    const handleDelete = () => {};
 
-    console.log(taskId);
-  };
+    //Action menu items
+    const actionItems = [
+      {
+        title: "Edit",
+        action: handleEdit,
+      },
+      {
+        title: "Archive",
+        action: handleDelete,
+      },
+    ];
 
-  const handleEdit = () => {};
-
-  const handleDelete = () => {};
-
-  //Action menu items
-  const actionItems = [
-    {
-      title: "Edit",
-      action: handleEdit,
-    },
-    {
-      title: "Archive",
-      action: handleDelete,
-    },
-  ];
-
-  useEffect(() => {
-    //TODO: Call an API
-
-    //! Mock data
-    setTaskData(data);
-    setIsBusy(false);
-  }, []);
-
-  return (
-    <div
-      className={`min-w-screen h-screen fixed left-0 top-0 flex justify-center items-center inset-0 z-50 animate-fade-in`}
-    >
+    return (
       <div
-        className="absolute bg-black opacity-80 inset-0 z-0 "
-        onClick={modal.remove}
-      ></div>
-      {!isBusy && (
-        <div className="w-full max-w-lg p-1 px-2 relative mx-auto my-auto rounded-lg shadow-lg bg-white animate-fade-in-up">
-          <ActionMenu actionItems={actionItems} />
-          <div className="flex flex-col mb-1">
-            <span className="text-grey-darker font-medium text-sm">
-              {taskData.goalTitle}
-            </span>
-            <span className="font-medium text-black text-3xl">
-              {taskData.title}
-            </span>
+        className={`min-w-screen h-screen fixed left-0 top-0 flex justify-center items-center inset-0 z-50 animate-fade-in`}
+      >
+        <div
+          className="absolute bg-black opacity-80 inset-0 z-0 "
+          onClick={modal.remove}
+        ></div>
+        {!loading && !loadingGoal && taskData != undefined ? (
+          <div className="w-full max-w-lg p-1 px-2 relative mx-auto my-auto rounded-lg shadow-lg bg-white animate-fade-in-down">
+            <ActionMenu actionItems={actionItems} />
+            <div className="flex flex-col mb-1">
+              <span className="text-grey-darker font-medium text-sm">
+                {goalData.title}
+              </span>
+              <span className="font-medium text-black text-3xl">
+                {taskData.title}
+              </span>
+            </div>
+            <div className="flex row gap-2">
+              {taskData.deadline != undefined && (
+                <Deadline time={taskData.deadline} />
+              )}
+              <DifficultyBadge difficulty={taskData.difficulty} />
+            </div>
+            <div className="text-lg mt-5 text-black">
+              <p className="mb-3">{taskData.text}</p>
+            </div>
+            <div className="mt-20 mb-1 grid place-items-end">
+              <ButtonComplete action={handleComplete} />
+            </div>
           </div>
-          <div className="flex row gap-2">
-            <Deadline time={taskData.deadline} />
-            <DifficultyBadge difficulty={taskData.difficulty} />
-          </div>
-          <div className="text-lg mt-5 text-black">
-            <p className="mb-3">{taskData.text}</p>
-          </div>
-          <div className="mt-20 mb-1 grid place-items-end">
-            <ButtonComplete action={handleComplete} />
-          </div>
-        </div>
-      )}
-    </div>
-  );
-});
+        ) : (
+          <Loading />
+        )}
+      </div>
+    );
+  }
+);

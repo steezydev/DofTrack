@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
-import { query, collection, doc, where } from "firebase/firestore";
+import { doc } from "firebase/firestore";
 import db from "../firebase/firebase";
 
 //Schemas
-import { TasksSchema } from "../schemas/tasksSchema";
+import { TaskSchema } from "../schemas/tasksSchema";
 
 //Types
 import { TaskData } from "../types/TypesTask";
 
 //Hooks
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 
-export default function useGetTasks(goalId: string, active: boolean): [TaskData[], boolean] {
+export default function useGetTask(
+  taskId: string,
+  goalId: string
+): [TaskData | undefined, boolean] {
   const [loading, setLoading] = useState(true);
-  const [result, setResult] = useState<TaskData[]>([] as TaskData[]);
+  const [result, setResult] = useState<TaskData | undefined>({} as TaskData | undefined);
 
-  const [data, load, error] = useCollectionData(
-    query(
-      collection(doc(db, "goals", goalId), "tasks"),
-      where("isActive", "==", active)
-    ),
+  const [data, load, error] = useDocumentDataOnce(
+    doc(doc(db, "goals", goalId), "tasks", taskId),
     {
       idField: "id",
       transform: (item: any) => {
@@ -31,10 +31,11 @@ export default function useGetTasks(goalId: string, active: boolean): [TaskData[
   useEffect(() => {
     function validateGoals() {
       try {
-        const tasks = TasksSchema.parse(data);
-        setResult(tasks);
+        const task = TaskSchema.parse(data);
+        setResult(task);
         setLoading(false);
       } catch (error) {
+        setResult(undefined);
         console.log(error);
         setLoading(false);
       }

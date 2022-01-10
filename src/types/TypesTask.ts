@@ -1,11 +1,11 @@
 import { Difficulties } from "./TypesDifficulties";
 
 export interface TaskData {
-  id: string;
+  id?: string;
   title: string;
   goalTitle?: string;
-  text: string;
-  deadline: Date;
+  text?: string;
+  deadline?: Date;
   difficulty: Difficulties;
   isMore: boolean;
   isActive: boolean;

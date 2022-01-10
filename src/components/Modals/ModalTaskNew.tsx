@@ -1,41 +1,31 @@
 import { useState, useEffect } from "react";
 import NiceModal, { useModal } from "@ebay/nice-modal-react";
+import { doc, addDoc, collection } from "firebase/firestore";
+import db from "../../firebase/firebase";
 
 //Components
 import ButtonSave from "../Buttons/ButtonSave";
 import DifficultyBadgePicker from "../DifficultyBadge/DifficultyBadgePicker";
 import DeadlinePicker from "../Deadline/DeadlinePicker";
+import Loading from "../Loading/Loading";
 
 //Types
-import { GoalData } from "../../types/TypesGoal";
 import { TaskData } from "../../types/TypesTask";
 import { Difficulties } from "../../types/TypesDifficulties";
 
-const goalDataMock = {
-  id: "123",
-  title: "Learn Javascript",
-  gems: 1790,
-  goalGems: 3000,
-  percent: 50,
-  stats: {
-    tasks: 12,
-    activities: 2,
-  },
-  daysSpent: 2,
-};
+//Hooks
+import useGetGoal from "../../hooks/useGetGoal";
 
-export default NiceModal.create((goadId) => {
+//Schemas
+import { TaskSchema } from "../../schemas/tasksSchema";
+
+
+export default NiceModal.create(({ goalId }: { goalId: string }) => {
   const modal = useModal();
 
-  const [goalData, setGoalData] = useState<GoalData>({} as GoalData);
+  const [goalData, loading] = useGetGoal(goalId);
   const [newTaskData, setNewTaskData] = useState<TaskData>({} as TaskData);
-
-  useEffect(() => {
-    //TODO: Call an API
-
-    //!Mock data
-    setGoalData(goalDataMock);
-  }, []);
+  const [buttonLoading, setButtonLoading] = useState(false);
 
   const setDifficulty = (value: Difficulties) => {
     setNewTaskData((prevState) => ({ ...prevState, difficulty: value }));
@@ -53,14 +43,21 @@ export default NiceModal.create((goadId) => {
     setNewTaskData((prevState) => ({ ...prevState, text: value }));
   };
 
-  const handleSave = () => {
-    //Validation
-    //TODO: Validate data
+  const handleSave = async () => {
+    if (!buttonLoading) {
+      setButtonLoading(true);
+      //Validation
+      const newTask = { ...newTaskData, isActive: true, isMore: newTaskData.text != undefined };
+      const task = TaskSchema.safeParse(newTask);
 
-    //Save to the database
-    //TODO: Save to the database
-
-    console.log(newTaskData);
+      if (task.success) {
+        await addDoc(collection(doc(db, "goals", goalId), "tasks"), task.data);
+        modal.remove;
+      } else {
+        console.log(task.error);
+      }
+      setButtonLoading(false);
+    }
   };
 
   return (
@@ -71,33 +68,37 @@ export default NiceModal.create((goadId) => {
         className="absolute bg-black opacity-80 inset-0 z-0 "
         onClick={modal.remove}
       ></div>
-      <div className="w-full max-w-lg p-1 px-2 relative mx-auto my-auto rounded-lg shadow-lg bg-white animate-fade-in-up">
-        <div className="flex flex-col mb-1">
-          <span className="text-grey-darker font-medium text-sm">
-            {goalData.title}
-          </span>
-          <input
-            name="title"
-            onChange={(e) => handleChangeTitle(e)}
-            placeholder="Title"
-            className="mr-6 font-medium text-black text-3xl border-b-2 border-dashed border-grey-darker"
-          ></input>
+      {!loading && goalData != undefined ? (
+        <div className="w-full max-w-lg p-1 px-2 relative mx-auto my-auto rounded-lg shadow-lg bg-white animate-fade-in-up">
+          <div className="flex flex-col mb-1">
+            <span className="text-grey-darker font-medium text-sm">
+              {goalData.title}
+            </span>
+            <input
+              name="title"
+              onChange={(e) => handleChangeTitle(e)}
+              placeholder="Title"
+              className="mr-6 font-medium text-black text-3xl border-b-2 border-dashed border-grey-darker"
+            ></input>
+          </div>
+          <div className="flex row gap-2">
+            <DeadlinePicker setDeadlineValue={setDeadlineValue} />
+            <DifficultyBadgePicker setDifficulty={setDifficulty} />
+          </div>
+          <div className="text-lg p-1 mt-5 text-black">
+            <div
+              onInput={(e) => handleChangeText(e.currentTarget.textContent)}
+              contentEditable="true"
+              className="customScroll mb-3 w-full p-1 outline-2 outline-dashed outline-grey-darker rounded-lg min-h-[200px] max-h-[400px] overflow-y-scroll"
+            ></div>
+          </div>
+          <div className="mt-2 mb-1 grid place-items-end">
+            <ButtonSave loading={buttonLoading} action={handleSave} />
+          </div>
         </div>
-        <div className="flex row gap-2">
-          <DeadlinePicker setDeadlineValue={setDeadlineValue} />
-          <DifficultyBadgePicker setDifficulty={setDifficulty} />
-        </div>
-        <div className="text-lg p-1 mt-5 text-black">
-          <div
-            onInput={(e) => handleChangeText(e.currentTarget.textContent)}
-            contentEditable="true"
-            className="customScroll mb-3 w-full p-1 outline-2 outline-dashed outline-grey-darker rounded-lg min-h-[200px] max-h-[400px] overflow-y-scroll"
-          ></div>
-        </div>
-        <div className="mt-2 mb-1 grid place-items-end">
-          <ButtonSave action={handleSave} />
-        </div>
-      </div>
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 });

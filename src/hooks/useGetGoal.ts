@@ -9,13 +9,13 @@ import { GoalSchema } from "../schemas/goalsSchema";
 import { GoalData } from "../types/TypesGoal";
 
 //Hooks
-import { useDocumentData } from "react-firebase-hooks/firestore";
+import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
 
 export default function useGetGoal(id: string): [GoalData, boolean] {
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState<GoalData>({} as GoalData);
 
-  const [data, load, error] = useDocumentData(
+  const [data, load, error] = useDocumentDataOnce(
     doc(db, "goals", id),
     {
       idField: "id",

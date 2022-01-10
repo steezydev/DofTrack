@@ -1,17 +1,24 @@
+import LoadingButton from "../Loading/LoadingButton";
+
 interface IProps {
-  action?: any;
+  action: () => void;
+  loading?: boolean;
 }
 
-export default function ButtonSave({action}: IProps) {
+export default function ButtonSave({ action, loading = false }: IProps) {
   return (
     <div
-      className={`container cursor-pointer rounded-xl grid place-items-center max-w-[11rem] bg-blue hover:bg-blue-hover`}
+      className={`container rounded-xl grid place-items-center max-w-[11rem] bg-blue ${
+        !loading && "hover:bg-blue-hover cursor-pointer "
+      }`}
       onClick={action}
     >
       <div className="p-2">
-        <span className="font-medium text-white select-none">
-          Save
-        </span>
+        {!loading ? (
+          <span className="font-medium text-white select-none">Save</span>
+        ) : (
+          <LoadingButton />
+        )}
       </div>
     </div>
   );

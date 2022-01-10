@@ -28,6 +28,7 @@ export default function PageGoalTasks({
             id={item.id}
             title={item.title}
             goalTitle={goalData.title}
+            goalId={goalData.id}
             isMore={item.isMore}
             deadline={item.deadline}
             difficulty={item.difficulty}

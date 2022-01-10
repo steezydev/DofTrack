@@ -6,7 +6,7 @@ import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
 import { Difficulties } from "../../types/TypesDifficulties";
 import { TaskData } from "../../types/TypesTask";
 
-type IProps = Omit<TaskData, 'text' | 'isActive'>
+type IProps = Omit<TaskData, "text" | "isActive">;
 
 export default function TaskFinished({
   id,
@@ -37,7 +37,7 @@ export default function TaskFinished({
           )}
         </div>
         <div className="flex row gap-3 justify-end flex-wrap">
-          <Deadline time={deadline} />
+          {deadline != undefined && <Deadline time={deadline} />}
           <DifficultyBadge difficulty={difficulty} />
         </div>
       </div>

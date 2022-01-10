@@ -31,7 +31,7 @@ export default function ActionMenu({ actionItems }: IProps) {
       <div
         className={`${expanded ? "scale-up-tr" : "scale-out-tr"} ${
           isFirstRender ? "hidden" : ""
-        } arrowBox flex flex-col bg-[#f3f3f3] py-2 px-1 absolute top-10 border-gray-func border-2 rounded-md`}
+        } arrowBox flex flex-col bg-[#fcfcfc] py-2 px-1 absolute top-10 border-gray-func border-2 rounded-md`}
       >
         {actionItems.map((item, i) => {
           return <ActionItem key={i} title={item.title} action={item.action} />;

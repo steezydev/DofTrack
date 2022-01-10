@@ -4,7 +4,9 @@ import { TaskData } from "../../types/TypesTask";
 import TaskActive from "./TaskActive";
 import TaskFinished from "./TaskFinished";
 
-interface IProps extends Omit<TaskData, 'text'> {}
+interface IProps extends Omit<TaskData, 'text'> {
+  goalId: string
+}
 
 export default function Task({
   id,
@@ -14,6 +16,7 @@ export default function Task({
   deadline,
   difficulty,
   isActive,
+  goalId,
   gems = 0,
 }: IProps) {
   if (isActive) {
@@ -25,6 +28,7 @@ export default function Task({
         isMore={isMore}
         deadline={deadline}
         difficulty={difficulty}
+        goalId={goalId}
       />
     );
   }
