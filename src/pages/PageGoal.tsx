@@ -1,8 +1,7 @@
 import NiceModal from "@ebay/nice-modal-react";
 import { useParams, useSearchParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { collection, doc, query, where } from "firebase/firestore";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 //Firebase
 import db from "../firebase/firebase";
@@ -14,11 +13,9 @@ import TaskFinished from "../components/Tasks/TaskFinished";
 import ButtonAdd from "../components/Buttons/ButtonAdd";
 import NavBar from "../components/Nav/NavBar";
 import Loading from "../components/Loading/Loading";
+import NotFound from "./NotFound";
 
 //Types
-import { GoalData } from "../types/TypesGoal";
-import { ActivityData } from "../types/TypesActivity";
-import { TaskData } from "../types/TypesTask";
 import { ILink } from "../types/TypesLinks";
 
 //Hooks
@@ -27,6 +24,9 @@ import {
   useDocument,
   useCollectionData,
 } from "react-firebase-hooks/firestore";
+
+//Modals
+import { showNewTaskModal, showNewActivityModal } from "../modal/showModal";
 
 export default function PageGoal() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -37,7 +37,7 @@ export default function PageGoal() {
   const { id } = useParams();
 
   if (id == undefined) {
-    return <Navigate to="/404" />;
+    return <NotFound text="No such goal" />;
   }
 
   const [goalData, loadingGoals, errorGoals] = useDocumentData(
@@ -75,22 +75,6 @@ export default function PageGoal() {
         },
       }
     );
-
-  const [etasksData, eloadingTasks, eerrorTasks] = useCollectionData(
-    collection(doc(db, "goals", id), "tasks")
-  );
-
-  useEffect(() => {
-    console.log(etasksData);
-  }, [etasksData]);
-
-  const showNewTaskModal = (goalId: string) => {
-    NiceModal.show("TaskNewModal", { goalId });
-  };
-
-  const showNewActivityModal = (goalId: string) => {
-    NiceModal.show("ActivityNewModal", { goalId });
-  };
 
   const GoalPageLinks: ILink[] = [
     {
@@ -135,7 +119,7 @@ export default function PageGoal() {
               <NavBar links={GoalPageLinks} />
             </div>
           ) : (
-            <Navigate to="/404" />
+            <NotFound text="No such goal" />
           )}
           <div className="p-10">
             {!loadingActivities && !loadingTasks && (

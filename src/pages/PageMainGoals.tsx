@@ -19,19 +19,16 @@ import {
   useCollectionData,
 } from "react-firebase-hooks/firestore";
 
-export default function PageMainGoals() {
-  const showNewModal = (goalId: string) => {
-    NiceModal.show("TaskNewModal", { goalId });
-  };
+//Modals
+import { showNewTaskModal } from "../modal/showModal";
 
+export default function PageMainGoals() {
   const [mainGoals, loadingGolas, errorGoals] = useCollectionData(
     query(collection(db, "goals"), where("isMain", "==", true), limit(3)),
     {
       idField: "id",
     }
   );
-
-  
 
   return (
     <main>
@@ -115,7 +112,7 @@ export default function PageMainGoals() {
             deadline={new Date()}
             difficulty="MEDIUM"
           />
-          <ButtonAdd action={() => showNewModal("123")} />
+          <ButtonAdd action={() => showNewTaskModal("123")} />
         </div>
         <div className="flex flex-col gap-5 w-96 items-center">
           <Goal
@@ -142,7 +139,7 @@ export default function PageMainGoals() {
             deadline={new Date()}
             difficulty="MEDIUM"
           />
-          <ButtonAdd action={() => showNewModal("123")} />
+          <ButtonAdd action={() => showNewTaskModal("123")} />
         </div>
       </div>
     </main>

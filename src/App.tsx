@@ -1,10 +1,8 @@
-import { useState, FC } from "react";
-
 import ModalTaskNew from "./components/Modals/ModalTaskNew";
 import TaskFullModal from "./components/Modals/ModalTaskFull";
 import ModalActivityNew from "./components/Modals/ModalActivityNew";
 
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 import NiceModal from "@ebay/nice-modal-react";
 

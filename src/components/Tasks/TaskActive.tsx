@@ -9,6 +9,9 @@ import ActionMenu from "../ActionMenu/ActionMenu";
 import { Difficulties } from "../../types/TypesDifficulties";
 import { TaskData } from "../../types/TypesTask";
 
+//Modals
+import { showFullModal } from "../../modal/showModal";
+
 type IProps = Omit<TaskData, 'text'>
 
 export default function TaskActive({
@@ -19,10 +22,6 @@ export default function TaskActive({
   deadline,
   difficulty,
 }: IProps) {
-  const showModal = () => {
-    NiceModal.show("TaskFullModal", { taskId: "123" });
-  };
-
   const handleEdit = () => {};
 
   const handleDelete = () => {};
@@ -41,7 +40,7 @@ export default function TaskActive({
   return (
     <div className="container rounded-lg max-w-sm bg-white pt-1 relative">
       <ActionMenu actionItems={actionItems} />
-      <div className="px-2 pb-1" onClick={showModal}>
+      <div className="px-2 pb-1" onClick={showFullModal}>
         <div className="flex flex-col mb-3">
           <span className="text-grey-darker font-medium text-sm">
             {goalTitle}
