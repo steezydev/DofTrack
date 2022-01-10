@@ -8,6 +8,6 @@ export interface GoalData {
     activities: number;
   };
   creationDate: Date,
-  isActive?: boolean
+  isActive: boolean
   isMain?: boolean
 }
