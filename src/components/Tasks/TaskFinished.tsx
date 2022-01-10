@@ -6,7 +6,7 @@ import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
 import { Difficulties } from "../../types/TypesDifficulties";
 import { TaskData } from "../../types/TypesTask";
 
-type IProps = Omit<TaskData, 'text'>
+type IProps = Omit<TaskData, 'text' | 'isActive'>
 
 export default function TaskFinished({
   id,

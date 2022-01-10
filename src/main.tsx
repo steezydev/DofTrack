@@ -7,8 +7,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import NiceModal from "@ebay/nice-modal-react";
 
-import Goals from "./pages/PageGoals";
-import Goal from "./pages/PageGoal";
+import Goals from "./pages/PageGoals/PageGoals";
+import Goal from "./pages/PageGoal/PageGoal";
 import MainGoals from "./pages/PageMainGoals";
 
 import NotFoundHandler from "./pages/NotFoundHandler";

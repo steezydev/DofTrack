@@ -12,7 +12,7 @@ import { TaskData } from "../../types/TypesTask";
 //Modals
 import { showFullModal } from "../../modal/showModal";
 
-type IProps = Omit<TaskData, 'text'>
+type IProps = Omit<TaskData, 'text' | 'isActive'>
 
 export default function TaskActive({
   id,

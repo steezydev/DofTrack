@@ -18,7 +18,9 @@
     "react-firebase-hooks": "^4.0.1",
     "react-router-dom": "^6.2.1",
     "recharts": "^2.1.6",
-    "victory": "^36.2.0"
+    "tozod": "^3.0.0",
+    "victory": "^36.2.0",
+    "zod": "^3.11.6"
   },
   "devDependencies": {
     "@ebay/nice-modal-react": "^1.1.1",
