@@ -14,7 +14,7 @@ export default function Timer({
   const timer = secondsToHms(time);
 
   return (
-    <div className="animate-fade-in-down">
+    <div className="">
       <div className="flex flex-row justify-center text-4xl">
         <span className="relative">
           {timer.hours}
