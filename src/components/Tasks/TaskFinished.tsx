@@ -18,7 +18,7 @@ export default function TaskFinished({
   gems,
 }: IProps) {
   return (
-    <div className="container relative rounded-lg max-w-sm bg-white pt-1">
+    <div className="container relative rounded-lg max-w-sm bg-white pt-1 animate-fade-in">
       <div className="absolute flex justify-center gap-1 items-center w-full h-full top-0 left-0 rounded-lg z-50">
         <span className="text-white font-semibold text-4xl">+ {gems}</span>
         <span>

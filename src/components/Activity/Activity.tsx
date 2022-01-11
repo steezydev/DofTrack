@@ -88,7 +88,7 @@ export default function Activity({
   ];
 
   return (
-    <div className="container rounded-lg max-w-sm bg-white pt-1 select-none relative">
+    <div className="container rounded-lg max-w-sm bg-white pt-1 select-none relative animate-fade-in">
       <ActionMenu actionItems={actionItems} />
       <div className="px-2 pb-1">
         <div className="flex flex-col">

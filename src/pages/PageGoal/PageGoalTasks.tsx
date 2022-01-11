@@ -9,19 +9,20 @@ import { showNewTaskModal } from "../../modal/showModal";
 import { TaskData } from "../../types/TypesTask";
 import { GoalData } from "../../types/TypesGoal";
 
+import useGetTasks from "../../hooks/useGetTasks";
+
 export default function PageGoalTasks({
-  tasksData,
   goalData,
   isActive,
 }: {
-  tasksData: TaskData[];
   goalData: GoalData;
   isActive: boolean;
 }) {
-  return (
-    <div className="p-2 flex flex-row justify-start content-start gap-5 items-start w-full flex-wrap ">
-      {tasksData != undefined &&
-        tasksData.length > 0 &&
+  const [tasksData, loadingTasks] = useGetTasks(goalData.id, isActive);
+
+  return !loadingTasks ? (
+    <div className="p-2 flex flex-row justify-start content-start gap-5 items-start w-full flex-wrap animate-fade-in">
+      {tasksData != undefined && tasksData.length > 0 ? (
         tasksData.map((item, i) => (
           <Task
             key={item.id}
@@ -35,8 +36,13 @@ export default function PageGoalTasks({
             isActive={isActive}
             gems={item.gems}
           />
-        ))}
+        ))
+      ) : (
+        <div className="text-grey-darker text-xl">You did't finish any task yet :(</div>
+      )}
       {isActive && <ButtonAdd action={() => showNewTaskModal(goalData.id)} />}
     </div>
+  ) : (
+    <div></div>
   );
 }

@@ -41,7 +41,7 @@ export default function TaskActive({
   ];
 
   return (
-    <div className="container rounded-lg max-w-sm bg-white pt-1 relative">
+    <div className="container rounded-lg max-w-sm bg-white pt-1 relative animate-fade-in">
       <ActionMenu actionItems={actionItems} />
       <div className="px-2 pb-1" onClick={() => showFullModal(id!, goalId)}>
         <div className="flex flex-col mb-3">

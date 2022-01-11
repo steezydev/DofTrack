@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Activity from "../../components/Activity/Activity";
 import ButtonAdd from "../../components/Buttons/ButtonAdd";
@@ -10,15 +10,17 @@ import { showNewTaskModal, showNewActivityModal } from "../../modal/showModal";
 import { ActivityData } from "../../types/TypesActivity";
 import { GoalData } from "../../types/TypesGoal";
 
+import useGetActivities from "../../hooks/useGetActivities";
+
 export default function PageGoalActivities({
-  activitiesData,
   goalData,
 }: {
-  activitiesData: ActivityData[];
   goalData: GoalData;
 }) {
-  return (
-    <div className="p-2 flex flex-col items-start gap-5 w-96 mr-5">
+  const [activitiesData, loadingActivities] = useGetActivities(goalData.id);
+
+  return !loadingActivities ? (
+    <div className="p-2 flex flex-col items-start gap-5 w-96 mr-5 animate-fade-in-up">
       {activitiesData != undefined &&
         activitiesData.length > 0 &&
         activitiesData.map((item, i) => (
@@ -35,5 +37,7 @@ export default function PageGoalActivities({
         ))}
       <ButtonAdd action={() => showNewActivityModal(goalData.id)} />
     </div>
+  ) : (
+    <div></div>
   );
 }
