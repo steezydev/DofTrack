@@ -20,8 +20,6 @@ export default function PageGoal() {
   const [searchParams, setSearchParams] = useSearchParams();
   const filter = searchParams.get("filter");
 
-  console.log(filter);
-
   const { id } = useParams();
 
   if (id == undefined) {

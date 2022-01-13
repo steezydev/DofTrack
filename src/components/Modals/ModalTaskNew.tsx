@@ -67,8 +67,8 @@ export default NiceModal.create(({ goalId }: { goalId: string }) => {
         await addDoc(collection(doc(db, "goals", goalId), "tasks"), task.data);
       } else {
         console.log(task.error);
+        setButtonLoading(false);
       }
-      setButtonLoading(false);
     }
   };
 

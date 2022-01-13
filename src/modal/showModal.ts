@@ -12,8 +12,13 @@ const showFullModal = (taskId: string, goalId: string) => {
   NiceModal.show("TaskFullModal", { taskId, goalId });
 };
 
+const showNewGoal = () => {
+  NiceModal.show("GoalNewModal");
+};
+
 export {
   showNewTaskModal,
   showNewActivityModal,
-  showFullModal
+  showFullModal,
+  showNewGoal
 }

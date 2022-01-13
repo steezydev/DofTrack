@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-
+//Components
 import Activity from "../../components/Activity/Activity";
 import ButtonAdd from "../../components/Buttons/ButtonAdd";
+import Loading from "../../components/Loading/Loading";
 
 //Modals
 import { showNewTaskModal, showNewActivityModal } from "../../modal/showModal";

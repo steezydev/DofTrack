@@ -9,6 +9,9 @@ import PageGoalsEmpty from "./PageGoalsEmpty";
 //Types
 import { GoalData } from "../../types/TypesGoal";
 
+//Modals
+import { showNewGoal } from "../../modal/showModal";
+
 export default function ({ goals, loading }: { goals: GoalData[]; loading: boolean }) {
   return (
     <div className="p-10">
@@ -40,7 +43,7 @@ export default function ({ goals, loading }: { goals: GoalData[]; loading: boole
                 );
               }
             })}
-            <ButtonsAddGoal action={() => {}} />
+            <ButtonsAddGoal action={showNewGoal} />
           </div>
         ) : (
           <PageGoalsEmpty />

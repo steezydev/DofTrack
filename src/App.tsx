@@ -1,6 +1,8 @@
 import ModalTaskNew from "./components/Modals/ModalTaskNew";
 import TaskFullModal from "./components/Modals/ModalTaskFull";
 import ModalActivityNew from "./components/Modals/ModalActivityNew";
+import ModalGoalNew from "./components/Modals/ModalGoalNew";
+
 import './schemas/errorMap'
 
 import { Link, Navigate } from "react-router-dom";
@@ -10,6 +12,7 @@ import NiceModal from "@ebay/nice-modal-react";
 NiceModal.register("TaskFullModal", TaskFullModal);
 NiceModal.register("TaskNewModal", ModalTaskNew);
 NiceModal.register("ActivityNewModal", ModalActivityNew);
+NiceModal.register("GoalNewModal", ModalGoalNew);
 
 function App() {
   return (
