@@ -34,7 +34,7 @@ export default function useGetTask(
   const [data, load, error] = useDocumentDataOnce(
     doc(doc(db, "goals", goalId), "tasks", taskId).withConverter(converter),
     {
-      idField: "id"
+      idField: "id",
     }
   );
 

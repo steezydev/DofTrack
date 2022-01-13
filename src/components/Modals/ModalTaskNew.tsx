@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import NiceModal, { useModal } from "@ebay/nice-modal-react";
-import { doc, addDoc, collection } from "firebase/firestore";
+import {
+  doc,
+  addDoc,
+  collection,
+  updateDoc,
+  increment,
+} from "firebase/firestore";
 import db from "../../firebase/firebase";
 
 //Components
@@ -18,7 +24,6 @@ import useGetGoal from "../../hooks/useGetGoal";
 
 //Schemas
 import { TaskSchema } from "../../schemas/tasksSchema";
-
 
 export default NiceModal.create(({ goalId }: { goalId: string }) => {
   const modal = useModal();
@@ -47,12 +52,19 @@ export default NiceModal.create(({ goalId }: { goalId: string }) => {
     if (!buttonLoading) {
       setButtonLoading(true);
       //Validation
-      const newTask = { ...newTaskData, isActive: true, isMore: newTaskData.text != undefined };
+      const newTask = {
+        ...newTaskData,
+        isActive: true,
+        isMore: newTaskData.text != undefined,
+      };
       const task = TaskSchema.safeParse(newTask);
 
       if (task.success) {
-        await addDoc(collection(doc(db, "goals", goalId), "tasks"), task.data);
         modal.remove();
+        updateDoc(doc(db, "goals", goalId), {
+          "stats.tasks": increment(1),
+        });
+        await addDoc(collection(doc(db, "goals", goalId), "tasks"), task.data);
       } else {
         console.log(task.error);
       }

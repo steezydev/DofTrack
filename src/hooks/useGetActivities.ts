@@ -24,6 +24,7 @@ export default function useGetActivities(goalId: string): [ActivityData[] | unde
   const [data, load, error] =
     useCollectionData(query(collection(doc(db, "goals", goalId), "activities").withConverter(converter)), {
       idField: "id",
+      snapshotListenOptions: { includeMetadataChanges: true },
     });
 
   return [data, load];

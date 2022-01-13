@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import NiceModal, { useModal } from "@ebay/nice-modal-react";
-import { doc, addDoc, collection } from "firebase/firestore";
+import { doc, addDoc, collection, updateDoc, increment } from "firebase/firestore";
 import db from "../../firebase/firebase";
 
 //Components
@@ -63,8 +63,11 @@ export default NiceModal.create(({ goalId }: { goalId: string }) => {
       const activity = ActivitySchema.safeParse(newActivity);
 
       if (activity.success) {
-        await addDoc(collection(doc(db, "goals", goalId), "activities"), activity.data);
         modal.remove();
+        updateDoc(doc(db, "goals", goalId), {
+          "stats.activities": increment(1)
+        });
+        await addDoc(collection(doc(db, "goals", goalId), "activities"), activity.data);
       } else {
         console.log(activity.error);
       }

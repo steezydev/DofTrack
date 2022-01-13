@@ -11,8 +11,8 @@ import Loading from "../Loading/Loading";
 import useGetTask from "../../hooks/useGetTask";
 import useGetGoal from "../../hooks/useGetGoal";
 
-import { doc, deleteDoc, setDoc } from "firebase/firestore";
-import db from "../../firebase/firebase";
+//Firebase
+import { completeTask, deleteTask } from "../../firebase/taskFunctions";
 
 export default NiceModal.create(
   ({ taskId, goalId }: { taskId: string; goalId: string }) => {
@@ -22,13 +22,17 @@ export default NiceModal.create(
     const [goalData, loadingGoal] = useGetGoal(goalId);
 
     const handleEdit = () => {};
-    
+
     const handleComplete = () => {
-      setDoc(doc(doc(db, "goals", goalId), "tasks", taskId), { isActive: false }, { merge: true });
+      if (taskData != undefined) {
+        modal.remove();
+        completeTask(goalId, taskId, taskData.difficulty);
+      }
     };
 
-    const handleDelete = async () => {
-      await deleteDoc(doc(doc(db, "goals", goalId), "tasks", taskId));
+    const handleDelete = () => {
+      modal.remove();
+      deleteTask(goalId, taskId)
     };
 
     //Action menu items
@@ -51,7 +55,10 @@ export default NiceModal.create(
           className="absolute bg-black opacity-80 inset-0 z-0 "
           onClick={modal.remove}
         ></div>
-        {!loading && !loadingGoal && taskData != undefined && goalData != undefined ? (
+        {!loading &&
+        !loadingGoal &&
+        taskData != undefined &&
+        goalData != undefined ? (
           <div className="w-full max-w-lg p-1 px-2 relative mx-auto my-auto rounded-lg shadow-lg bg-white animate-fade-in-down">
             <ActionMenu actionItems={actionItems} />
             <div className="flex flex-col mb-1">

@@ -1,21 +1,16 @@
-import NiceModal from "@ebay/nice-modal-react";
-
 //Components
 import Deadline from "../Deadline/Deadline";
 import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
 import ActionMenu from "../ActionMenu/ActionMenu";
 
 //Types
-import { Difficulties } from "../../types/TypesDifficulties";
 import { TaskData } from "../../types/TypesTask";
 
 //Modals
 import { showFullModal } from "../../modal/showModal";
 
-import { doc, deleteDoc, setDoc, increment } from "firebase/firestore";
-import db from "../../firebase/firebase";
-
-import { gemsScale } from "../../constants/gemsScale";
+//Firebase
+import { completeTask, deleteTask } from "../../firebase/taskFunctions";
 
 interface IProps extends Omit<TaskData, "text" | "isActive"> {
   goalId: string;
@@ -33,20 +28,11 @@ export default function TaskActive({
   const handleEdit = () => {};
 
   const handleComplete = () => {
-    setDoc(
-      doc(doc(db, "goals", goalId), "tasks", id),
-      { isActive: false, gems: gemsScale[difficulty] },
-      { merge: true }
-    );
-    setDoc(
-      doc(db, "goals", goalId),
-      { gems: increment(gemsScale[difficulty]) },
-      { merge: true }
-    );
+    completeTask(goalId, id, difficulty);
   };
 
-  const handleDelete = async () => {
-    await deleteDoc(doc(doc(db, "goals", goalId), "tasks", id));
+  const handleDelete = () => {
+    deleteTask(goalId, id);
   };
 
   const actionItems = [

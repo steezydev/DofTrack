@@ -18,6 +18,8 @@ import { timerToSeconds } from "../../helpers/time";
 import { doc, deleteDoc, setDoc } from "firebase/firestore";
 import db from "../../firebase/firebase";
 
+import { deleteActivity } from "../../firebase/activityFunctions";
+
 interface IProps extends ActivityData {
   goalId: string;
 }
@@ -30,7 +32,7 @@ export default function Activity({
   difficulty,
   timeLeft,
   status,
-  goalId
+  goalId,
 }: IProps) {
   const [timer, setTimer] = useState(-1);
   const [active, setActive] = useState(false);
@@ -70,7 +72,7 @@ export default function Activity({
 
   const handleContinue = () => {
     //TODO: Set value in the db
-    setActStatus("UP")
+    setActStatus("UP");
   };
 
   const handleClose = () => {
@@ -79,8 +81,8 @@ export default function Activity({
 
   const handleEdit = () => {};
 
-  const handleDelete = async () => {
-    await deleteDoc(doc(doc(db, "goals", goalId), "activities", id));
+  const handleDelete = () => {
+    deleteActivity(goalId, id);
   };
 
   //Action menu items
@@ -121,7 +123,7 @@ export default function Activity({
           </div>
         ) : (
           <div>
-            <Timer time={timer} showGems={actStatus == "UP"}/>
+            <Timer time={timer} showGems={actStatus == "UP"} />
             <div className="grid place-items-center mt-4">
               <ButtonStart
                 action={handleClick}

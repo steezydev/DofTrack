@@ -43,6 +43,7 @@ export default function useGetTasks(
     ),
     {
       idField: "id",
+      snapshotListenOptions: { includeMetadataChanges: true },
     }
   );
 

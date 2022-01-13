@@ -30,6 +30,7 @@ export default function useGetGoals(): any {
     collection(db, "goals").withConverter(converter),
     {
       idField: "id",
+      snapshotListenOptions: { includeMetadataChanges: true },
     }
   );
 
