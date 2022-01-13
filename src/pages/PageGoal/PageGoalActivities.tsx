@@ -33,6 +33,7 @@ export default function PageGoalActivities({
             difficulty={item.difficulty}
             status={item.status}
             timeLeft={item.timeLeft}
+            goalId={goalData.id}
           />
         ))}
       <ButtonAdd action={() => showNewActivityModal(goalData.id)} />

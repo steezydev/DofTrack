@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { query, collection, doc } from "firebase/firestore";
+import { query, collection, doc, QueryDocumentSnapshot } from "firebase/firestore";
 import db from "../firebase/firebase";
 
 //Schemas
@@ -11,31 +11,20 @@ import { ActivityData } from "../types/TypesActivity";
 //Hooks
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
-export default function useGetActivities(goalId: string): [ActivityData[], boolean] {
-  const [loading, setLoading] = useState(true);
-  const [result, setResult] = useState<ActivityData[]>([] as ActivityData[]);
+const converter = {
+  toFirestore: (data: ActivityData) => data,
+  fromFirestore: (snap: QueryDocumentSnapshot) => {
+    const goal = snap.data();
 
+    return goal as ActivityData;
+  },
+};
+
+export default function useGetActivities(goalId: string): [ActivityData[] | undefined, boolean] {
   const [data, load, error] =
-    useCollectionData(query(collection(doc(db, "goals", goalId), "activities")), {
+    useCollectionData(query(collection(doc(db, "goals", goalId), "activities").withConverter(converter)), {
       idField: "id",
     });
 
-  useEffect(() => {
-    function validateGoals() {
-      try {
-        const activities = ActivitiesSchema.parse(data);
-        setResult(activities);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setLoading(false);
-      }
-    }
-
-    if (load !== true) {
-      validateGoals();
-    }
-  }, [load]);
-
-  return [result, loading];
+  return [data, load];
 }

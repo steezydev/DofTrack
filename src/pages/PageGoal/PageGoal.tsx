@@ -33,8 +33,8 @@ export default function PageGoal() {
   return (
     <main>
       {!loadingGoals ? (
-        <div className="animate-fade-in">
-          {goalData != undefined ? (
+        goalData != undefined ? (
+          <div className="animate-fade-in">
             <div className="animate-fade-in">
               <header className="p-4 mb-3">
                 <h1 className="text-center text-4xl font-bold">
@@ -53,23 +53,23 @@ export default function PageGoal() {
 
               <NavBar links={goalPageLinks} />
             </div>
-          ) : (
-            <NotFound text="No such goal" />
-          )}
-          <div className="p-10">
-            <div className="divTransHeight mb-10 animate-fade-in-up">
-              <h1 className="text-2xl font-medium">Active</h1>
-              <div className="flex flex-row justify-between w-full grow">
-                <PageGoalActivities goalData={goalData} />
-                <PageGoalTasks goalData={goalData} isActive={true} />
+            <div className="p-10">
+              <div className="divTransHeight mb-10 animate-fade-in-up">
+                <h1 className="text-2xl font-medium">Active</h1>
+                <div className="flex flex-row justify-between w-full grow">
+                  <PageGoalActivities goalData={goalData} />
+                  <PageGoalTasks goalData={goalData} isActive={true} />
+                </div>
+              </div>
+              <div className="divTransHeight animate-fade-in-up">
+                <h1 className="text-2xl font-medium mb-3">Finished</h1>
+                <PageGoalTasks goalData={goalData} isActive={false} />
               </div>
             </div>
-            <div className="divTransHeight animate-fade-in-up">
-              <h1 className="text-2xl font-medium mb-3">Finished</h1>
-              <PageGoalTasks goalData={goalData} isActive={false} />
-            </div>
           </div>
-        </div>
+        ) : (
+          <NotFound text="No such goal" />
+        )
       ) : (
         <Loading isFull={true} />
       )}

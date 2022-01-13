@@ -15,7 +15,12 @@ import { ActivityData } from "../../types/TypesActivity";
 //Helpers
 import { timerToSeconds } from "../../helpers/time";
 
-type IProps = ActivityData;
+import { doc, deleteDoc, setDoc } from "firebase/firestore";
+import db from "../../firebase/firebase";
+
+interface IProps extends ActivityData {
+  goalId: string;
+}
 
 export default function Activity({
   id,
@@ -25,6 +30,7 @@ export default function Activity({
   difficulty,
   timeLeft,
   status,
+  goalId
 }: IProps) {
   const [timer, setTimer] = useState(-1);
   const [active, setActive] = useState(false);
@@ -73,7 +79,9 @@ export default function Activity({
 
   const handleEdit = () => {};
 
-  const handleDelete = () => {};
+  const handleDelete = async () => {
+    await deleteDoc(doc(doc(db, "goals", goalId), "activities", id));
+  };
 
   //Action menu items
   const actionItems: ActionItemData[] = [

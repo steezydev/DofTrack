@@ -1,7 +1,7 @@
 import { Difficulties } from "./TypesDifficulties";
 
 export interface TaskData {
-  id?: string;
+  id: string;
   title: string;
   goalTitle?: string;
   text?: string;

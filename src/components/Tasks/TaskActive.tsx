@@ -12,6 +12,9 @@ import { TaskData } from "../../types/TypesTask";
 //Modals
 import { showFullModal } from "../../modal/showModal";
 
+import { doc, deleteDoc, setDoc } from "firebase/firestore";
+import db from "../../firebase/firebase";
+
 interface IProps extends Omit<TaskData, "text" | "isActive"> {
   goalId: string;
 }
@@ -27,12 +30,22 @@ export default function TaskActive({
 }: IProps) {
   const handleEdit = () => {};
 
-  const handleDelete = () => {};
+  const handleComplete = () => {
+    setDoc(doc(doc(db, "goals", goalId), "tasks", id), { isActive: false }, { merge: true });
+  };
+
+  const handleDelete = async () => {
+    await deleteDoc(doc(doc(db, "goals", goalId), "tasks", id));
+  };
 
   const actionItems = [
     {
       title: "Edit",
       action: handleEdit,
+    },
+    {
+      title: "Complete",
+      action: handleComplete,
     },
     {
       title: "Archive",
