@@ -25,6 +25,7 @@ export default function ({ goals, loading }: { goals: GoalData[]; loading: boole
                     gems={item.gems}
                     goalGems={item.goalGems}
                     stats={item.stats}
+                    isActive={item.isActive}
                   />
                 ) : (
                   <GoalFinished
@@ -34,6 +35,7 @@ export default function ({ goals, loading }: { goals: GoalData[]; loading: boole
                     gems={item.gems}
                     stats={item.stats}
                     creationDate={item.creationDate}
+                    isActive={item.isActive}
                   />
                 );
               }

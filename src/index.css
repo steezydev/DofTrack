@@ -89,6 +89,39 @@ body {
 	        animation: scale-up-ver-top 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;
 }
 
+.fade-in-anim {
+  animation: fadeIn 0.2s;
+  -webkit-animation: fadeIn 0.2s;
+  -moz-animation: fadeIn 0.2s;
+  -o-animation: fadeIn 0.2s;
+  -ms-animation: fadeIn 0.2s;
+}
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+
 @keyframes scale-up-tr {
   0% {
     transform: scale(0.5);

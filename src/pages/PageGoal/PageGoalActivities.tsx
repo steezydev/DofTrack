@@ -36,7 +36,7 @@ export default function PageGoalActivities({
             goalId={goalData.id}
           />
         ))}
-      <ButtonAdd action={() => showNewActivityModal(goalData.id)} />
+      <ButtonAdd type="ACTIVITY" action={() => showNewActivityModal(goalData.id)} />
     </div>
   ) : (
     <div></div>

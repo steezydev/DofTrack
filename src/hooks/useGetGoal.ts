@@ -9,7 +9,7 @@ import { GoalSchema } from "../schemas/goalsSchema";
 import { GoalData } from "../types/TypesGoal";
 
 //Hooks
-import { useDocumentDataOnce } from "react-firebase-hooks/firestore";
+import { useDocumentData } from "react-firebase-hooks/firestore";
 
 const converter = {
   toFirestore: (data: GoalData) => data,
@@ -30,7 +30,7 @@ const converter = {
 export default function useGetGoal(
   id: string
 ): [GoalData | undefined, boolean] {
-  const [data, load, error] = useDocumentDataOnce(
+  const [data, load, error] = useDocumentData(
     doc(db, "goals", id).withConverter(converter),
     {
       idField: "id",

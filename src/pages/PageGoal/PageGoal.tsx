@@ -14,11 +14,13 @@ import useGetGoal from "../../hooks/useGetGoal";
 
 import getPageLinks from "../../helpers/getPageLinks";
 
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+
 export default function PageGoal() {
   const [searchParams, setSearchParams] = useSearchParams();
   const filter = searchParams.get("filter");
 
-  //console.log(filter);
+  console.log(filter);
 
   const { id } = useParams();
 
@@ -41,8 +43,10 @@ export default function PageGoal() {
                   {goalData.title}
                 </h1>
                 <div className="flex justify-center gap-1">
-                  <h2 className="text-center text-2xl">
-                    {goalData.gems} / {goalData.goalGems}{" "}
+                  <h2 className="text-center text-2xl flex flex-row gap-1">
+                    <div>{goalData.gems}</div>
+                    <div>/</div>
+                    <div>{goalData.goalGems}</div>
                   </h2>
                   <img
                     className="object-scale-down w-6"
@@ -54,17 +58,25 @@ export default function PageGoal() {
               <NavBar links={goalPageLinks} />
             </div>
             <div className="p-10">
-              <div className="divTransHeight mb-10 animate-fade-in-up">
-                <h1 className="text-2xl font-medium">Active</h1>
-                <div className="flex flex-row justify-between w-full grow">
-                  <PageGoalActivities goalData={goalData} />
-                  <PageGoalTasks goalData={goalData} isActive={true} />
+              {["activities", "tasks", null].includes(filter) && (
+                <div className="divTransHeight mb-10 animate-fade-in-up">
+                  <h1 className="text-2xl font-medium">Active</h1>
+                  <div className="flex flex-row justify-between w-full grow">
+                    {["activities", null].includes(filter) && (
+                      <PageGoalActivities goalData={goalData} />
+                    )}
+                    {["tasks", null].includes(filter) && (
+                      <PageGoalTasks goalData={goalData} isActive={true} />
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="divTransHeight animate-fade-in-up">
-                <h1 className="text-2xl font-medium mb-3">Finished</h1>
-                <PageGoalTasks goalData={goalData} isActive={false} />
-              </div>
+              )}
+              {["tasks", "finished", null].includes(filter) && (
+                <div className="divTransHeight animate-fade-in-up">
+                  <h1 className="text-2xl font-medium mb-3">Finished</h1>
+                  <PageGoalTasks goalData={goalData} isActive={false} />
+                </div>
+              )}
             </div>
           </div>
         ) : (
