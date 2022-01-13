@@ -1,9 +1,14 @@
-import { useState, useEffect } from "react";
-import { query, collection, doc, where } from "firebase/firestore";
+import {
+  query,
+  collection,
+  doc,
+  where,
+  QueryDocumentSnapshot
+} from "firebase/firestore";
 import db from "../firebase/firebase";
 
 //Schemas
-import { TasksSchema } from "../schemas/tasksSchema";
+import { TaskSchema } from "../schemas/tasksSchema";
 
 //Types
 import { TaskData } from "../types/TypesTask";
@@ -11,39 +16,35 @@ import { TaskData } from "../types/TypesTask";
 //Hooks
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
-export default function useGetTasks(goalId: string, active: boolean): [TaskData[], boolean] {
-  const [loading, setLoading] = useState(true);
-  const [result, setResult] = useState<TaskData[]>([] as TaskData[]);
+const converter = {
+  toFirestore: (data: TaskData) => data,
+  fromFirestore: (snap: QueryDocumentSnapshot) => {
+    const item = snap.data();
+    const task = {
+      ...item,
+      deadline:
+        item.deadline != undefined
+          ? new Date(item.deadline.seconds * 1000)
+          : undefined,
+    };
 
+    return task as TaskData;
+  },
+};
+
+export default function useGetTasks(
+  goalId: string,
+  active: boolean
+): [TaskData[] | undefined, boolean] {
   const [data, load, error] = useCollectionData(
     query(
-      collection(doc(db, "goals", goalId), "tasks"),
+      collection(doc(db, "goals", goalId), "tasks").withConverter(converter),
       where("isActive", "==", active)
     ),
     {
       idField: "id",
-      transform: (item: any) => {
-        return { ...item, deadline: item.deadline != undefined ? new Date(item.deadline.seconds * 1000) : undefined };
-      },
     }
   );
 
-  useEffect(() => {
-    function validateGoals() {
-      try {
-        const tasks = TasksSchema.parse(data);
-        setResult(tasks);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setLoading(false);
-      }
-    }
-
-    if (load !== true) {
-      validateGoals();
-    }
-  }, [load]);
-
-  return [result, loading];
+  return [data, load];
 }
