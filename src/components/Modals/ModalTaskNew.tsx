@@ -52,7 +52,7 @@ export default NiceModal.create(({ goalId }: { goalId: string }) => {
 
       if (task.success) {
         await addDoc(collection(doc(db, "goals", goalId), "tasks"), task.data);
-        modal.remove;
+        modal.remove();
       } else {
         console.log(task.error);
       }
