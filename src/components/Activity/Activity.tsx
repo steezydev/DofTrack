@@ -122,7 +122,7 @@ export default function Activity({
             </div>
           </div>
         ) : (
-          <div>
+          <div className="mt-5">
             <Timer time={timer} showGems={actStatus == "UP"} />
             <div className="grid place-items-center mt-4">
               <ButtonStart

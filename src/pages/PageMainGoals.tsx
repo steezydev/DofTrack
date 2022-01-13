@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NiceModal from "@ebay/nice-modal-react";
-import { collection, doc, query, where, limit } from "firebase/firestore";
+import { collection, doc, query, where, limit, collectionGroup } from "firebase/firestore";
 
 //Firebase
 import db from "../firebase/firebase";
@@ -29,6 +29,10 @@ export default function PageMainGoals() {
       idField: "id",
     }
   );
+
+  useEffect(() => {
+    console.log(mainGoals)
+  }, [loadingGolas])
 
   return (
     <main>

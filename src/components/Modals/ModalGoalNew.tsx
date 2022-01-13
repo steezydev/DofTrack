@@ -57,6 +57,7 @@ export default NiceModal.create(({ goalId }: { goalId: string }) => {
         gems: 0,
         stats: { activities: 0, tasks: 0 },
         creationDate: serverTimestamp(),
+        isMain: false
       };
       const goal = GoalSchema.safeParse(newGoal);
 
@@ -91,7 +92,7 @@ export default NiceModal.create(({ goalId }: { goalId: string }) => {
             name="title"
             onChange={(e) => handleChangeTitle(e)}
             placeholder="Title"
-            className="mr-6 font-medium text-black text-3xl border-b-2 border-dashed border-grey-darker"
+            className="mr-6 font-medium text-black text-3xl border-b-2 border-dashed border-grey-darker outline-none"
           ></input>
         </div>
         <div className="flex justify-center items-center my-10 gap-6">

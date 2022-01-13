@@ -102,7 +102,7 @@ export default NiceModal.create(({ goalId }: { goalId: string }) => {
               name="title"
               onChange={(e) => handleChangeTitle(e)}
               placeholder="Title"
-              className="mr-6 font-medium text-black text-3xl border-b-2 border-dashed border-grey-darker"
+              className="mr-6 font-medium text-black text-3xl border-b-2 border-dashed border-grey-darker outline-none"
             ></input>
           </div>
           <div className="flex row gap-2">
