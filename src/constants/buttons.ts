@@ -40,5 +40,11 @@ export default {
     hover: "hover:bg-green-hover",
     text: "Complete",
     width: "11rem"
+  },
+  save: {
+    color: "bg-blue",
+    hover: "hover:bg-blue-hover",
+    text: "Save",
+    width: "11rem"
   }
 };

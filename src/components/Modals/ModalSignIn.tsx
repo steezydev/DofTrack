@@ -1,19 +1,52 @@
 import { useState, useEffect } from "react";
 import NiceModal, { useModal } from "@ebay/nice-modal-react";
 
+//Components
+import Button from "../Buttons/Button";
+
+//Schema
+import { SignInSchema } from "../../schemas/authSchema";
+
+//Modal
 import { showSignUp } from "../../modal/showModal";
 
-import Button from "../Buttons/Button";
+interface SignInData {
+  email: string;
+  password: string;
+}
+
+type FieldType = "email" | "password";
 
 export default NiceModal.create(({ goalId }: { goalId: string }) => {
   const modal = useModal();
 
-  const handleSignUp = () => {
-    showSignUp()
-    modal.remove()
-  }
+  const [singInData, setSingInData] = useState<SignInData>({} as SignInData);
+  const [buttonLoading, setButtonLoading] = useState(false);
 
-  const handleSignIn = () => {};
+  const handleSignUp = () => {
+    showSignUp();
+    modal.remove();
+  };
+
+  const handleChangeField = (type: FieldType, value: string) => {
+    setSingInData((prevState) => ({ ...prevState, [type]: value }));
+  };
+
+  const handleSignIn = () => {
+    if (!buttonLoading) {
+      setButtonLoading(true);
+      const authData = SignInSchema.safeParse(singInData);
+
+      console.log(singInData);
+      //TODO: Sign in user with firebase
+
+      if (authData.success) {
+      } else {
+        console.log(authData.error);
+        setButtonLoading(false);
+      }
+    }
+  };
 
   return (
     <div
@@ -27,12 +60,20 @@ export default NiceModal.create(({ goalId }: { goalId: string }) => {
         <div className="flex flex-col justify-center items-center gap-9 p-3">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-1">
-              <span className="text-grey-darker">Login</span>
-              <input type="email" className="outline-dashed outline-2 outline-grey-darker rounded-md p-1"></input>
+              <span className="text-grey-darker">Email</span>
+              <input
+                type="email"
+                className="outline-dashed outline-2 outline-grey-darker rounded-md p-1"
+                onChange={(e) => handleChangeField("email", e.target.value)}
+              ></input>
             </div>
             <div className="flex flex-col gap-1">
               <span className="text-grey-darker">Password</span>
-              <input type="password" className="outline-dashed outline-2 outline-grey-darker rounded-md p-1"></input>
+              <input
+                type="password"
+                className="outline-dashed outline-2 outline-grey-darker rounded-md p-1"
+                onChange={(e) => handleChangeField("password", e.target.value)}
+              ></input>
             </div>
             <div className="flex flex-row gap-3">
               <input type="checkbox" />
@@ -41,7 +82,11 @@ export default NiceModal.create(({ goalId }: { goalId: string }) => {
           </div>
 
           <div className="flex flex-col gap-3 w-full justify-center items-center">
-            <Button type="signin" action={handleSignIn} />
+            <Button
+              loading={buttonLoading}
+              type="signin"
+              action={handleSignIn}
+            />
             <Button type="register" action={handleSignUp} />
           </div>
         </div>

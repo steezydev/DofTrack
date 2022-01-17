@@ -10,7 +10,7 @@ import {
 import db from "../../firebase/firebase";
 
 //Components
-import ButtonSave from "../Buttons/ButtonSave";
+import Button from "../Buttons/Button";
 import DifficultyBadgePicker from "../DifficultyBadge/DifficultyBadgePicker";
 import TimerActivity from "../Timer/TimerActivity";
 import Loading from "../Loading/Loading";
@@ -110,7 +110,7 @@ export default NiceModal.create(({ goalId }: { goalId: string }) => {
           </div>
           <TimerActivity setTimer={setTimer} />
           <div className="mt-2 mb-1 grid place-items-end">
-            <ButtonSave loading={buttonLoading} action={handleSave} />
+            <Button type="save" loading={buttonLoading} action={handleSave} />
           </div>
         </div>
       ) : (
