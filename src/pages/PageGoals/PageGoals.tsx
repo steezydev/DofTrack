@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 
 //Components
 import NavBar from "../../components/Nav/NavBar";
+import Menu from "../../components/Menu/Menu";
 
 //Page Components
 import PageGoalsItems from "./PageGoalsItems";
@@ -20,6 +21,7 @@ export default function PageGoals() {
 
   return (
     <main>
+      <Menu />
       <div>
         <header className="p-4 mb-3">
           <h1 className="text-center text-4xl font-bold">Goals</h1>

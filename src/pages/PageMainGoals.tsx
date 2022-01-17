@@ -11,6 +11,7 @@ import Activity from "../components/Activity/Activity";
 import TaskActive from "../components/Tasks/TaskActive";
 import ButtonAdd from "../components/Buttons/ButtonAdd";
 import ButtonMore from "../components/Buttons/ButtonMore";
+import Menu from "../components/Menu/Menu";
 
 //Hooks
 import {
@@ -23,6 +24,7 @@ import {
 import { showNewTaskModal } from "../modal/showModal";
 
 export default function PageMainGoals() {
+
   const [mainGoals, loadingGolas, errorGoals] = useCollectionData(
     query(collection(db, "goals"), where("isMain", "==", true), limit(3)),
     {
@@ -36,6 +38,7 @@ export default function PageMainGoals() {
 
   return (
     <main>
+      <Menu />
       <header className="p-4 mb-3">
         <h1 className="text-center text-4xl font-bold">Main Goals</h1>
       </header>

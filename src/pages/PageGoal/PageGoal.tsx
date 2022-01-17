@@ -4,6 +4,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import Loading from "../../components/Loading/Loading";
 import NotFound from "../NotFound";
 import NavBar from "../../components/Nav/NavBar";
+import Menu from "../../components/Menu/Menu";
 
 //Page components
 import PageGoalActivities from "./PageGoalActivities";
@@ -14,7 +15,6 @@ import useGetGoal from "../../hooks/useGetGoal";
 
 import getPageLinks from "../../helpers/getPageLinks";
 
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 export default function PageGoal() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -32,6 +32,7 @@ export default function PageGoal() {
 
   return (
     <main>
+      <Menu />
       {!loadingGoals ? (
         goalData != undefined ? (
           <div className="animate-fade-in">

@@ -1,39 +1,18 @@
-type ButtonTypes = "start" | "stop" | "continue" | "close";
+type ButtonTypes = "start" | "stop" | "continue" | "close" | "signin" | "register" | "complete";
 
 interface IProps {
   type: ButtonTypes;
   action: any;
 }
 
-const buttonOptions = {
-  start: {
-    color: "bg-green",
-    hover: "hover:bg-green-hover",
-    text: "Start",
-  },
-  stop: {
-    color: "bg-red",
-    hover: "hover:bg-red-hover",
-    text: "Stop",
-  },
-  continue: {
-    color: "bg-blue",
-    hover: "hover:bg-blue-hover",
-    text: "Continue"
-  },
-  close: {
-    color: "bg-red",
-    hover: "hover:bg-red-hover",
-    text: "Close"
-  }
-};
+import buttonOptions from '../../constants/buttons'
 
-export default function ButtonStart({ type, action }: IProps) {
+export default function Button({ type, action }: IProps) {
   const button = buttonOptions[type];
 
   return (
     <div
-      className={`container cursor-pointer rounded-xl grid place-items-center max-w-[9rem] ${button.color} ${button.hover}`}
+      className={`container cursor-pointer rounded-xl grid place-items-center max-w-[${button.width}] ${button.color} ${button.hover}`}
       onClick={action}
     >
       <div className="p-2">

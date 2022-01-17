@@ -16,9 +16,20 @@ const showNewGoal = () => {
   NiceModal.show("GoalNewModal");
 };
 
+const showSignIn = () => {
+  NiceModal.show("SignInModal");
+};
+
+const showSignUp = () => {
+  NiceModal.show("SignUpModal");
+};
+
+
 export {
   showNewTaskModal,
   showNewActivityModal,
   showFullModal,
-  showNewGoal
+  showNewGoal,
+  showSignIn,
+  showSignUp
 }

@@ -10,6 +10,7 @@ import NiceModal from "@ebay/nice-modal-react";
 import Goals from "./pages/PageGoals/PageGoals";
 import Goal from "./pages/PageGoal/PageGoal";
 import MainGoals from "./pages/PageMainGoals";
+import Home from "./pages/PageHome/PageHome";
 
 import NotFoundHandler from "./pages/NotFoundHandler";
 import NotFound from "./pages/NotFound";
@@ -21,6 +22,7 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/main-goals" element={<MainGoals />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/goals" element={<Goals />} />
           <Route path="/goal/:id" element={<Goal />} />
           <Route path="/404" element={<NotFound text="Page not found"/>} />

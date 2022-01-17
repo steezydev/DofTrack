@@ -3,7 +3,7 @@ import NiceModal, { useModal } from "@ebay/nice-modal-react";
 //Components
 import Deadline from "../Deadline/Deadline";
 import DifficultyBadge from "../DifficultyBadge/DifficultyBadge";
-import ButtonComplete from "../Buttons/ButtonComplete";
+import Button from "../Buttons/Button";
 import ActionMenu from "../ActionMenu/ActionMenu";
 import Loading from "../Loading/Loading";
 
@@ -79,7 +79,7 @@ export default NiceModal.create(
               <p className="mb-3">{taskData.text}</p>
             </div>
             <div className="mt-20 mb-1 grid place-items-end">
-              <ButtonComplete action={handleComplete} />
+              <Button type="complete" action={handleComplete} />
             </div>
           </div>
         ) : (
