@@ -8,7 +8,7 @@
 > DofTrack is a **REAL** user-friendly task tracker. With no penalties or punishments. No matter what user will only get positive emotions.
 
 # About
-The key feature of DofTrack is it’s gentleness. Unlike other task tracking applications DofTrack doesn’t get on your nerves with never-ending red deadlines. On the contrary, it focuses on rewarding you for completed tasks. 
+The key feature of DofTrack is it’s gentleness. Unlike other task tracking applications DofTrack doesn’t get on your nerves with never-ending *<span style="color: red">red deadlines</span>*. On the contrary, it focuses on rewarding you for completed tasks. 
 
 ## Entities
 The main entities of DofTrack are
