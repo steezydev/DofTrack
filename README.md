@@ -40,6 +40,7 @@ When creating a **goal** user sets an amount of **gems** he has too reach comple
 - [x] Create functionality
 - [x] Connect Firebase Firestore
 - [ ] Connect Firebase Authentication
+- [ ] Refactor mobile layout (*should have thought in the beginning* 😭)
 - [ ] Polish the project
 - [ ] Launch
 
