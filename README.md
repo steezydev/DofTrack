@@ -47,17 +47,17 @@ When creating a **goal** user sets an amount of **gems** he has too reach comple
 # Getting started
 ### Installation
 ```bash
-git clone https://github.com/steezy2401/DofTrack.git
-cd ./DofTrack
-npm install
+$ git clone https://github.com/steezy2401/DofTrack.git
+$ cd ./DofTrack
+$ npm install
 ```
 
 ### Start
 ```bash
-npm run dev
+$ npm run dev
 ```
 
 ### Build
 ```bash
-npm run build
+$ npm run build
 ```
