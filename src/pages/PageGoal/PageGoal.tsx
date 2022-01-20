@@ -38,11 +38,11 @@ export default function PageGoal() {
           <div className="animate-fade-in">
             <div className="animate-fade-in">
               <header className="p-4 mb-3">
-                <h1 className="text-center text-4xl font-bold">
+                <h1 className="text-center text-4xl font-bold text-black">
                   {goalData.title}
                 </h1>
                 <div className="flex justify-center gap-1">
-                  <h2 className="text-center text-2xl flex flex-row gap-1">
+                  <h2 className="text-center text-2xl flex flex-row gap-1 text-black">
                     <div>{goalData.gems}</div>
                     <div>/</div>
                     <div>{goalData.goalGems}</div>

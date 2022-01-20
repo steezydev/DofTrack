@@ -5,9 +5,11 @@ import ModalGoalNew from "./components/Modals/ModalGoalNew";
 import ModalSignIn from "./components/Modals/ModalSignIn";
 import ModalSignUp from "./components/Modals/ModalSignUp";
 
-import './schemas/errorMap'
+import "./schemas/errorMap";
 
 import { Link, Navigate } from "react-router-dom";
+
+import PageHome from "./pages/PageHome/PageHome";
 
 import NiceModal from "@ebay/nice-modal-react";
 
@@ -19,21 +21,7 @@ NiceModal.register("SignInModal", ModalSignIn);
 NiceModal.register("SignUpModal", ModalSignUp);
 
 function App() {
-  return (
-    <div>
-      <h1>Bookkeeper!</h1>
-
-      <nav
-        style={{
-          borderBottom: "solid 1px",
-          paddingBottom: "1rem",
-        }}
-      >
-        <Link to="/main-goals">Main Goals</Link> |{" "}
-        <Link to="/goals">Goals</Link>
-      </nav>
-    </div>
-  );
+  return <PageHome />;
 }
 
 export default App;

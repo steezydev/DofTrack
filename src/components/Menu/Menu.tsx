@@ -19,7 +19,6 @@ export default function Menu() {
         >
           
         </CircleMenuItem>
-        <CircleMenuItem onClick={() => navigate(`/main-goals`)} tooltip="Main Goals"></CircleMenuItem>
         <CircleMenuItem onClick={() => navigate(`/goals`)} tooltip="Goals"></CircleMenuItem>
         <CircleMenuItem onClick={() => alert("Clicked the item")} tooltip="Profile"></CircleMenuItem>
       </CircleMenu>

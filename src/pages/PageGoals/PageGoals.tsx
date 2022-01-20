@@ -24,7 +24,7 @@ export default function PageGoals() {
       <Menu />
       <div>
         <header className="p-4 mb-3">
-          <h1 className="text-center text-4xl font-bold">Goals</h1>
+          <h1 className="text-center text-4xl font-bold text-black">Goals</h1>
         </header>
 
         <NavBar links={GoalsPageLinks} />
