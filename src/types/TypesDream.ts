@@ -1,9 +1,11 @@
 export interface DreamData {
-    title: string;
-    gems: number;
-    gemsGoal: number;
-    goalsNumber: number;
-    daysNumber: number;
-    tasksNumber: number;
-    isActive?: boolean;
-  }
+  id: number;
+  title: string;
+  gems: number;
+  goalGems: number;
+  goalsNumber: number;
+  daysNumber: number;
+  tasksNumber: number;
+  creationDate: Date;
+  isActive?: boolean;
+}

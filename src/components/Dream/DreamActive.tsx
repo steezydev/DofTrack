@@ -7,16 +7,17 @@ import { DreamData } from "../../types/TypesDream";
 interface IProps extends DreamData {}
 
 export default function DreamActive({
+  id,
   title,
   gems,
-  gemsGoal,
+  goalGems,
   goalsNumber,
   daysNumber,
   tasksNumber,
   isActive = true,
 }: IProps) {
   const gemsString = numberWithSpaces(gems);
-  const gemsGoalString = numberWithSpaces(gemsGoal);
+  const gemsGoalString = numberWithSpaces(goalGems);
 
   return (
     <div className="container rounded-lg max-w-2xl bg-white pt-1">

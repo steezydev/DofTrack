@@ -1,6 +1,18 @@
 import React from 'react'
+import { DreamData } from '../../types/TypesDream'
 
-export default function DreamFinished() {
+interface IProps extends DreamData {}
+
+export default function DreamFinished({
+  id,
+  title,
+  gems,
+  goalGems,
+  goalsNumber,
+  daysNumber,
+  tasksNumber,
+  isActive = true,
+}: IProps) {
   return (
     <div>
       
