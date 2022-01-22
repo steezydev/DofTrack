@@ -9,12 +9,19 @@ import { DreamData } from "../types/TypesDream";
 //Hooks
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
+//Helpers
+import { getDifferenceInDays } from "../helpers/time";
+
 const converter = {
   toFirestore: (data: DreamData) => data,
   fromFirestore: (snap: QueryDocumentSnapshot) => {
     const item = snap.data();
     const goal = {
       ...item,
+      daysNumber:
+        item.creationDate != undefined
+          ? getDifferenceInDays (new Date(item.creationDate.seconds * 1000))
+          : undefined,
       creationDate:
         item.creationDate != undefined
           ? new Date(item.creationDate.seconds * 1000)

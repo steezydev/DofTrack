@@ -34,3 +34,10 @@ export function dateToString(date: Date): string {
 
   return day + "/" + month + "/" + year;
 }
+
+export function getDifferenceInDays (date: Date): number { 
+  const today = new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate())
+  const diffTime = today.getTime() - date.getTime();
+  
+  return diffTime / (1000 * 3600 * 24);
+}
