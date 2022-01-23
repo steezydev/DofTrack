@@ -1,6 +1,4 @@
 import { z } from "zod";
-import { toZod } from "tozod";
-import { GoalData } from "../types/TypesGoal";
 
 export const GoalSchema = z.object({
   id: z.string().optional(),
@@ -12,6 +10,7 @@ export const GoalSchema = z.object({
     tasks: z.number(),
   }),
   isActive: z.boolean(),
+  dreamId: z.string().optional(),
   isMain: z.boolean().optional(),
 });
 

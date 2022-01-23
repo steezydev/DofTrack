@@ -1,4 +1,9 @@
-import { collection, QueryDocumentSnapshot } from "firebase/firestore";
+import {
+  collection,
+  query,
+  QueryDocumentSnapshot,
+  where,
+} from "firebase/firestore";
 import db from "../firebase/firebase";
 
 import { GoalSchema, GoalsSchema } from "../schemas/goalsSchema";
@@ -25,14 +30,24 @@ const converter = {
   },
 };
 
-export default function useGetGoals(): any {
-  const [data, load, error] = useCollectionData(
-    collection(db, "goals").withConverter(converter),
-    {
-      idField: "id",
-      snapshotListenOptions: { includeMetadataChanges: true },
-    }
-  );
+export default function useGetGoals(
+  id?: string
+): [GoalData[] | undefined, boolean] {
+  let q;
+
+  if (id != undefined) {
+    q = query(
+      collection(db, "goals").withConverter(converter),
+      where("dreamId", "==", id)
+    );
+  } else {
+    q = collection(db, "goals").withConverter(converter);
+  }
+
+  const [data, load, error] = useCollectionData(q, {
+    idField: "id",
+    snapshotListenOptions: { includeMetadataChanges: true },
+  });
 
   return [data, load];
 }

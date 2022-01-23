@@ -1,5 +1,5 @@
 export interface DreamData {
-  id: number;
+  id: string;
   title: string;
   gems: number;
   goalGems: number;

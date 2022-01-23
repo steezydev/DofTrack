@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { doc, QueryDocumentSnapshot } from "firebase/firestore";
 import db from "../firebase/firebase";
 
@@ -28,10 +27,10 @@ const converter = {
 };
 
 export default function useGetGoal(
-  id: string
+  dreamId: string
 ): [GoalData | undefined, boolean] {
   const [data, load, error] = useDocumentData(
-    doc(db, "goals", id).withConverter(converter),
+    doc(db, "goals", dreamId).withConverter(converter),
     {
       idField: "id",
     }

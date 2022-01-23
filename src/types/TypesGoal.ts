@@ -1,5 +1,6 @@
 export interface GoalData {
   id: string;
+  dreamId: string
   title: string;
   gems: number;
   goalGems: number;
@@ -7,7 +8,7 @@ export interface GoalData {
     tasks: number;
     activities: number;
   };
-  creationDate: Date,
-  isActive: boolean
-  isMain?: boolean
+  creationDate: Date;
+  isActive: boolean;
+  isMain?: boolean;
 }
