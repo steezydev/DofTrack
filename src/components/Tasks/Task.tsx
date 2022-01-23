@@ -6,6 +6,7 @@ import TaskFinished from "./TaskFinished";
 
 interface IProps extends Omit<TaskData, 'text'> {
   goalId: string
+  dreamId?: string
 }
 
 export default function Task({
@@ -17,6 +18,7 @@ export default function Task({
   difficulty,
   isActive,
   goalId,
+  dreamId,
   gems = 0,
 }: IProps) {
   if (isActive) {
@@ -29,6 +31,7 @@ export default function Task({
         deadline={deadline}
         difficulty={difficulty}
         goalId={goalId}
+        dreamId={dreamId}
       />
     );
   }

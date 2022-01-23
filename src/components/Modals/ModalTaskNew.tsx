@@ -6,6 +6,7 @@ import {
   collection,
   updateDoc,
   increment,
+  setDoc,
 } from "firebase/firestore";
 import db from "../../firebase/firebase";
 
@@ -65,6 +66,13 @@ export default NiceModal.create(({ goalId }: { goalId: string }) => {
           "stats.tasks": increment(1),
         });
         await addDoc(collection(doc(db, "goals", goalId), "tasks"), task.data);
+
+        if (goalData?.dreamId != undefined) {
+          updateDoc(
+            doc(db, "dreams", goalData.dreamId),
+            { tasksNumber: increment(1) }
+          );
+        }
       } else {
         console.log(task.error);
         setButtonLoading(false);

@@ -36,6 +36,7 @@ export default function PageGoalTasks({
               deadline={item.deadline}
               difficulty={item.difficulty}
               isActive={isActive}
+              dreamId={goalData?.dreamId}
               gems={item.gems}
             />
           ))

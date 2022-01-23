@@ -12,8 +12,8 @@ const showFullModal = (taskId: string, goalId: string) => {
   NiceModal.show("TaskFullModal", { taskId, goalId });
 };
 
-const showNewGoal = () => {
-  NiceModal.show("GoalNewModal");
+const showNewGoal = (dreamId?: string, dreamTitle?: string) => {
+  NiceModal.show("GoalNewModal", {dreamId, dreamTitle});
 };
 
 const showSignIn = () => {

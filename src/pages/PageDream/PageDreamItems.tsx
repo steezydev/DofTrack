@@ -4,15 +4,24 @@ import ButtonsAddGoal from "../../components/Buttons/ButtonsAddGoal";
 import Loading from "../../components/Loading/Loading";
 
 //Page Components
-import PageGoalsEmpty from "./PageGoalsEmpty";
+import PageDreamEmpty from "./PageDreamEmpty";
 
 //Types
 import { GoalData } from "../../types/TypesGoal";
+import { DreamData } from "../../types/TypesDream";
 
 //Modals
 import { showNewGoal } from "../../modal/showModal";
 
-export default function ({ goals, loading }: { goals: GoalData[] | undefined; loading: boolean }) {
+export default function ({
+  dreamData,
+  goals,
+  loading,
+}: {
+  dreamData: DreamData;
+  goals: GoalData[] | undefined;
+  loading: boolean;
+}) {
   return (
     <div className="p-10">
       {!loading ? (
@@ -45,10 +54,10 @@ export default function ({ goals, loading }: { goals: GoalData[] | undefined; lo
                 );
               }
             })}
-            <ButtonsAddGoal action={() => showNewGoal()} />
+            <ButtonsAddGoal action={() => showNewGoal(dreamData.id, dreamData.title)} />
           </div>
         ) : (
-          <PageGoalsEmpty />
+          <PageDreamEmpty dreamData={dreamData} />
         )
       ) : (
         <Loading />

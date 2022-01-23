@@ -26,13 +26,15 @@ export default NiceModal.create(
     const handleComplete = () => {
       if (taskData != undefined) {
         modal.remove();
-        completeTask(goalId, taskId, taskData.difficulty);
+        completeTask(goalId, taskId, taskData.difficulty, goalData?.dreamId);
       }
     };
 
     const handleDelete = () => {
-      modal.remove();
-      deleteTask(goalId, taskId)
+      if (taskData != undefined) {
+        modal.remove();
+        deleteTask(goalId, taskId, goalData?.dreamId);
+      }
     };
 
     //Action menu items

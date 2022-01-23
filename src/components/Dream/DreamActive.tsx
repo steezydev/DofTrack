@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 //Helpers
 import { numberWithSpaces } from "../../helpers/numbers";
 
@@ -16,11 +18,14 @@ export default function DreamActive({
   tasksNumber,
   isActive = true,
 }: IProps) {
+  const navigate = useNavigate();
+
+
   const gemsString = numberWithSpaces(gems);
   const gemsGoalString = numberWithSpaces(goalGems);
 
   return (
-    <div className="container rounded-lg max-w-2xl bg-white pt-1">
+    <div onClick={() => navigate(`/dream/${id}`)} className="container rounded-lg max-w-2xl bg-white pt-1 cursor-pointer select-none">
       <div className="px-2 pb-1 flex flex-col items-center gap-2">
         <div>
           <span className="text-xl font-medium">{title}</span>

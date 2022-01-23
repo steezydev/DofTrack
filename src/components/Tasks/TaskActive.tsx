@@ -14,6 +14,7 @@ import { completeTask, deleteTask } from "../../firebase/taskFunctions";
 
 interface IProps extends Omit<TaskData, "text" | "isActive"> {
   goalId: string;
+  dreamId?: string
 }
 
 export default function TaskActive({
@@ -24,15 +25,16 @@ export default function TaskActive({
   deadline,
   difficulty,
   goalId,
+  dreamId
 }: IProps) {
   const handleEdit = () => {};
 
   const handleComplete = () => {
-    completeTask(goalId, id, difficulty);
+    completeTask(goalId, id, difficulty, dreamId);
   };
 
   const handleDelete = () => {
-    deleteTask(goalId, id);
+    deleteTask(goalId, id, dreamId);
   };
 
   const actionItems = [

@@ -11,6 +11,7 @@ import Goals from "./pages/PageGoals/PageGoals";
 import Goal from "./pages/PageGoal/PageGoal";
 import Home from "./pages/PageHome/PageHome";
 import Dreams from "./pages/PageDreams/PageDreams";
+import Dream from "./pages/PageDream/PageDream";
 
 import NotFound from "./pages/NotFound";
 
@@ -22,6 +23,7 @@ ReactDOM.render(
           <Route path="/" element={<App />} />
           <Route path="/home" element={<Home />} />
           <Route path="/dreams" element={<Dreams />} />
+          <Route path="/dream/:id" element={<Dream />} />
           <Route path="/goals" element={<Goals />} />
           <Route path="/goal/:id" element={<Goal />} />
           <Route path="/404" element={<NotFound text="Page not found"/>} />
