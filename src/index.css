@@ -50,20 +50,22 @@ body {
 }
 
 #root {
-  height: 100%
+  height: 100%;
 }
 
-span,h1,h2 {
-  color: #1E1E1E
+span,
+h1,
+h2 {
+  color: #1e1e1e;
 }
 
 input[type="number"] {
   -webkit-appearance: textfield;
-     -moz-appearance: textfield;
-          appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
@@ -106,8 +108,8 @@ input[type=number]::-webkit-outer-spin-button {
   animation: scale-out-tr 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
 .scale-up-ver-top {
-	-webkit-animation: scale-up-ver-top 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;
-	        animation: scale-up-ver-top 0.3s cubic-bezier(0.390, 0.575, 0.565, 1.000) ;
+  -webkit-animation: scale-up-ver-top 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+  animation: scale-up-ver-top 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
 .fade-in-anim {
@@ -118,30 +120,49 @@ input[type=number]::-webkit-outer-spin-button {
   -ms-animation: fadeIn 0.2s;
 }
 @keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-moz-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-o-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-ms-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
-
 
 @keyframes scale-up-tr {
   0% {
@@ -153,35 +174,34 @@ input[type=number]::-webkit-outer-spin-button {
     transform-origin: 100% 0;
   }
 }
- @-webkit-keyframes scale-up-ver-top {
+@-webkit-keyframes scale-up-ver-top {
   0% {
     -webkit-transform: scaleY(0.4);
-            transform: scaleY(0.4);
+    transform: scaleY(0.4);
     -webkit-transform-origin: 100% 0%;
-            transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
   }
   100% {
     -webkit-transform: scaleY(1);
-            transform: scaleY(1);
+    transform: scaleY(1);
     -webkit-transform-origin: 100% 0%;
-            transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
   }
 }
 @keyframes scale-up-ver-top {
   0% {
     -webkit-transform: scaleY(0.4);
-            transform: scaleY(0.4);
+    transform: scaleY(0.4);
     -webkit-transform-origin: 100% 0%;
-            transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
   }
   100% {
     -webkit-transform: scaleY(1);
-            transform: scaleY(1);
+    transform: scaleY(1);
     -webkit-transform-origin: 100% 0%;
-            transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
   }
 }
-
 
 @keyframes scale-out-tr {
   0% {
@@ -201,18 +221,27 @@ input[type=number]::-webkit-outer-spin-button {
   transition: all 2s;
 }
 
-.spinner {
-  width:50px;
-  height:50px;
-  --c:radial-gradient(farthest-side,#5EA6DB 92%,#0000);
-  background: 
-    var(--c) 50% 0,
-    var(--c) 50% 100%,
-    var(--c) 100% 50%,
-    var(--c) 0    50%;
-  background-size:12px 12px;
-  background-repeat:no-repeat;
-  animation:s7 1s infinite;
+.menuItem {
+  transition: all 0.3s ease;
 }
-@keyframes s7 {to{transform: rotate(.5turn)}}
 
+.menuItem:hover {
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  --c: radial-gradient(farthest-side, #5ea6db 92%, #0000);
+  background: var(--c) 50% 0, var(--c) 50% 100%, var(--c) 100% 50%,
+    var(--c) 0 50%;
+  background-size: 12px 12px;
+  background-repeat: no-repeat;
+  animation: s7 1s infinite;
+}
+@keyframes s7 {
+  to {
+    transform: rotate(0.5turn);
+  }
+}
