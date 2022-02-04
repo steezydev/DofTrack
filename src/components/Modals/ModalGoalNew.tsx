@@ -127,7 +127,7 @@ export default NiceModal.create(
             >
               <span className="text-blue">-</span>
             </div>
-            <div className="flex flex-row outline-dashed outline-2 outline-grey-darker rounded-md px-4">
+            <div className="flex flex-row outline-dashed outline-2 outline-grey-func rounded-md px-4">
               <img
                 className="object-scale-down w-6"
                 src="/images/gem.png"

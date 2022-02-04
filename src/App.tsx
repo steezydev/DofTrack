@@ -4,6 +4,7 @@ import ModalActivityNew from "./components/Modals/ModalActivityNew";
 import ModalGoalNew from "./components/Modals/ModalGoalNew";
 import ModalSignIn from "./components/Modals/ModalSignIn";
 import ModalSignUp from "./components/Modals/ModalSignUp";
+import ModalDreamNew from "./components/Modals/ModalDreamNew";
 
 import "./schemas/errorMap";
 
@@ -19,6 +20,7 @@ NiceModal.register("ActivityNewModal", ModalActivityNew);
 NiceModal.register("GoalNewModal", ModalGoalNew);
 NiceModal.register("SignInModal", ModalSignIn);
 NiceModal.register("SignUpModal", ModalSignUp);
+NiceModal.register("DreamNewModal", ModalDreamNew);
 
 function App() {
   return <PageHome />;

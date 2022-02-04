@@ -11,7 +11,7 @@ import { GoalData } from "../../types/TypesGoal";
 import { DreamData } from "../../types/TypesDream";
 
 //Modals
-import { showNewGoal } from "../../modal/showModal";
+import { showNewDream } from "../../modal/showModal";
 
 
 export default function ({
@@ -57,7 +57,7 @@ export default function ({
                 );
               }
             })}
-            <ButtonsAddDream action={showNewGoal} />
+            <ButtonsAddDream action={showNewDream} />
           </div>
         ) : (
           <PageDreamsEmpty />

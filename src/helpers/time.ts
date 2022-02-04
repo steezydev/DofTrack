@@ -36,8 +36,11 @@ export function dateToString(date: Date): string {
 }
 
 export function getDifferenceInDays (date: Date): number { 
+  const target = new Date(new Date(date).getFullYear(),new Date(date).getMonth() , new Date(date).getDate())
   const today = new Date(new Date().getFullYear(),new Date().getMonth() , new Date().getDate())
-  const diffTime = today.getTime() - date.getTime();
+  const diffTime = today.getTime() - target.getTime();
+
+  console.log(today)
   
-  return diffTime / (1000 * 3600 * 24);
+  return diffTime / (1000 * 3600 * 24) < 0 ? 0 : diffTime / (1000 * 3600 * 24) ;
 }
