@@ -9,7 +9,7 @@ export default function PageGoalsEmpty() {
       <span className="text-2xl text-grey-darker font-medium">
         You don't have any goals yet :(
       </span>
-      <ButtonsAddGoal action={showNewGoal} />
+      <ButtonsAddGoal action={() => showNewGoal()} />
     </div>
   );
 }

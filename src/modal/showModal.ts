@@ -1,35 +1,29 @@
 import NiceModal from "@ebay/nice-modal-react";
 
-const showNewTaskModal = (goalId: string) => {
+export const showNewTaskModal = (goalId: string) => {
   NiceModal.show("TaskNewModal", { goalId });
 };
 
-const showNewActivityModal = (goalId: string) => {
+export const showNewActivityModal = (goalId: string) => {
   NiceModal.show("ActivityNewModal", { goalId });
 };
 
-const showFullModal = (taskId: string, goalId: string) => {
+export const showFullModal = (taskId: string, goalId: string) => {
   NiceModal.show("TaskFullModal", { taskId, goalId });
 };
 
-const showNewGoal = (dreamId?: string, dreamTitle?: string) => {
+export const showNewGoal = (dreamId?: string, dreamTitle?: string) => {
   NiceModal.show("GoalNewModal", {dreamId, dreamTitle});
 };
 
-const showSignIn = () => {
+export const showNewDream = () => {
+  NiceModal.show("DreamNewModal");
+};
+
+export const showSignIn = () => {
   NiceModal.show("SignInModal");
 };
 
-const showSignUp = () => {
+export const showSignUp = () => {
   NiceModal.show("SignUpModal");
 };
-
-
-export {
-  showNewTaskModal,
-  showNewActivityModal,
-  showFullModal,
-  showNewGoal,
-  showSignIn,
-  showSignUp
-}

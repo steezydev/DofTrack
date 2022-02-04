@@ -12,24 +12,27 @@ import Goal from "./pages/PageGoal/PageGoal";
 import Home from "./pages/PageHome/PageHome";
 import Dreams from "./pages/PageDreams/PageDreams";
 import Dream from "./pages/PageDream/PageDream";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
 import NotFound from "./pages/NotFound";
 
 ReactDOM.render(
   <React.StrictMode>
     <NiceModal.Provider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/dreams" element={<Dreams />} />
-          <Route path="/dream/:id" element={<Dream />} />
-          <Route path="/goals" element={<Goals />} />
-          <Route path="/goal/:id" element={<Goal />} />
-          <Route path="/404" element={<NotFound text="Page not found"/>} />
-          <Route path="/*" element={<NotFound text="Page not found"/>} />
-        </Routes>
-      </BrowserRouter>
+      <ErrorBoundary>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/dreams" element={<Dreams />} />
+            <Route path="/dream/:id" element={<Dream />} />
+            <Route path="/goals" element={<Goals />} />
+            <Route path="/goal/:id" element={<Goal />} />
+            <Route path="/404" element={<NotFound text="Page not found" />} />
+            <Route path="/*" element={<NotFound text="Page not found" />} />
+          </Routes>
+        </BrowserRouter>
+      </ErrorBoundary>
     </NiceModal.Provider>
   </React.StrictMode>,
   document.getElementById("root")
