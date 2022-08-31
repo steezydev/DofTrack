@@ -34,16 +34,6 @@ For every **task** or **activity** finished the user gets rewarded with **gems**
 
 When creating a **goal** user sets an amount of **gems** he has too reach completing the tasks to accomplish the **goal**.
 
-# Milestones
-- [x] Create a design
-- [x] Create React components based on the design
-- [x] Create functionality
-- [x] Connect Firebase Firestore
-- [ ] Connect Firebase Authentication
-- [ ] Refactor mobile layout (*should have thought in the beginning* 😭)
-- [ ] Polish the project
-- [ ] Launch
-
 # Getting started
 ### Installation
 ```bash
